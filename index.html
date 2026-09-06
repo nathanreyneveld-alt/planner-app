@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.jsonbin.io https://api.open-meteo.com https://geocoding-api.open-meteo.com https://api.bigdatacloud.net https://generativelanguage.googleapis.com;">
 <title>Weekagenda</title>
 <style>
   :root{
@@ -23,6 +24,8 @@
     --vacation-text:#0f7a68;
     --snackbar-bg:#1d1d1f;
     --snackbar-text:#ffffff;
+    --btn-primary-bg:#1d1d1f;
+    --btn-primary-text:#ffffff;
   }
   html.dark-mode{
     --bg:#000000;
@@ -39,6 +42,8 @@
     --vacation-text:#5fcbb8;
     --snackbar-bg:#2c2c2e;
     --snackbar-text:#f5f5f7;
+    --btn-primary-bg:#f5f5f7;
+    --btn-primary-text:#1d1d1f;
   }
   html, body{ transition: background-color 0.2s ease, color 0.2s ease; }
   body, .surface-transition, .table-card, .note-card, .modal-card, .day-header-cell, .time-axis, .day-col,
@@ -64,7 +69,8 @@
     gap:16px;
   }
   .title-block h1{font-size:36px; font-weight:700; letter-spacing:-0.02em;}
-  .greeting-line{color:var(--text-secondary); font-size:14px; margin-top:4px;}
+  .greeting-line{color:var(--text-secondary); font-size:14px; margin-top:4px; cursor:pointer; border-radius:6px; display:inline-block; padding:2px 4px; margin-left:-4px; transition:background 0.15s ease;}
+  .greeting-line:hover{background:var(--bg);}
   .header-right{display:flex; flex-direction:column; align-items:flex-end; gap:8px;}
   .header-actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
 
@@ -104,10 +110,19 @@
   .theme-toggle-btn:hover{background:var(--bg);}
 
   .today-summary{
-    display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end;
+    display:flex; flex-direction:column; align-items:flex-end; gap:2px;
     color:var(--text-secondary); font-size:13px;
   }
-  .today-summary .ts-sep{opacity:0.5;}
+  .today-summary .ts-weather{font-size:12px;}
+  .shimmer-line{
+    display:inline-block; width:220px; height:13px; border-radius:6px;
+    background:linear-gradient(90deg, var(--border) 25%, var(--bg) 50%, var(--border) 75%);
+    background-size:200% 100%; animation:shimmer 1.4s ease-in-out infinite;
+  }
+  @keyframes shimmer{
+    0%{background-position:200% 0;}
+    100%{background-position:-200% 0;}
+  }
   .location-edit-link{
     background:none; border:none; color:var(--accent); font-size:12px; cursor:pointer;
     padding:0; text-decoration:underline; text-underline-offset:2px;
@@ -122,17 +137,24 @@
     padding:8px 14px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid var(--border);
     background:var(--surface); color:var(--text-secondary);
   }
-  .location-form button:first-of-type{background:var(--text); color:#fff; border:none;}
+  .location-form button:first-of-type{background:var(--btn-primary-bg); color:var(--btn-primary-text); border:none;}
   .location-form button:hover{opacity:0.85;}
 
-  .legend-row{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:20px;}
-  .legend-item{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary);}
-  .legend-dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
+  .legend-bar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:20px;}
+  .legend-row{display:flex; flex-wrap:wrap; gap:6px;}
+  .legend-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
 
   .table-card{
     background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
     box-shadow:var(--shadow); overflow:hidden; margin-bottom:28px;
+    display:flex; align-items:stretch;
   }
+  .table-card-main{flex:1; min-width:0; display:flex; flex-direction:column;}
+  .side-nav-btn{
+    flex-shrink:0; width:40px; border:none; background:var(--bg); color:var(--text);
+    font-size:20px; cursor:pointer; transition:background 0.15s ease;
+  }
+  .side-nav-btn:hover{background:var(--border);}
   .table-scroll{overflow-x:auto;}
 
   .week-grid{display:grid; grid-template-columns:56px repeat(7, minmax(128px, 1fr)); min-width:960px;}
@@ -247,7 +269,7 @@
     100%{box-shadow:0 0 0 0 rgba(211,47,47,0);}
   }
   .ai-submit-btn{
-    margin-left:auto; padding:9px 18px; background:var(--text); color:#fff; border:none;
+    margin-left:auto; padding:9px 18px; background:var(--btn-primary-bg); color:var(--btn-primary-text); border:none;
     border-radius:8px; font-size:14px; font-weight:500; cursor:pointer; transition:opacity 0.15s ease;
   }
   .ai-submit-btn:hover{opacity:0.85;}
@@ -270,11 +292,17 @@
   .ai-preview-actions button{
     padding:8px 16px; border-radius:8px; font-size:13px; font-weight:500; cursor:pointer; border:1px solid var(--border);
   }
-  .ai-preview-actions .commit-btn{background:var(--text); color:#fff; border:none;}
+  .ai-preview-actions .commit-btn{background:var(--btn-primary-bg); color:var(--btn-primary-text); border:none;}
   .ai-preview-actions .commit-btn:hover{opacity:0.85;}
   .ai-preview-actions .discard-btn{background:var(--surface); color:var(--text-secondary);}
   .ai-preview-actions .discard-btn:hover{color:var(--text);}
 
+  .backup-strip{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    padding:10px 16px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); margin-bottom:28px;
+  }
+  .backup-label{font-size:13px; font-weight:600; color:var(--text-secondary); cursor:help;}
   .backup-actions{display:flex; gap:8px; flex-wrap:wrap;}
   .backup-actions button{
     padding:6px 12px; font-size:13px; border:1px solid var(--border); background:var(--surface);
@@ -313,7 +341,7 @@
   .modal-note{font-size:11px; color:var(--text-secondary); margin:-6px 0 14px; line-height:1.5;}
   .modal-actions{display:flex; align-items:center; gap:10px; margin-top:4px;}
   .modal-btn-primary{
-    padding:10px 18px; background:var(--text); color:#fff; border:none; border-radius:8px;
+    padding:10px 18px; background:var(--btn-primary-bg); color:var(--btn-primary-text); border:none; border-radius:8px;
     font-size:14px; font-weight:500; cursor:pointer;
   }
   .modal-btn-primary:hover{opacity:0.85;}
@@ -338,27 +366,21 @@
   .week-date-input:focus{border-color:var(--accent);}
 
   .grid-top-bar{
-    display:flex; align-items:center; gap:14px; padding:10px 16px;
+    display:flex; align-items:center; padding:10px 16px;
     border-bottom:1px solid var(--border); background:var(--bg); flex-wrap:wrap;
   }
-  .inline-week-nav{display:flex; gap:4px; flex-shrink:0;}
-  .inline-week-nav button{
-    width:26px; height:26px; border:1px solid var(--border); background:var(--surface); border-radius:7px;
-    cursor:pointer; font-size:14px; color:var(--text); display:flex; align-items:center; justify-content:center;
-  }
-  .inline-week-nav button:hover{background:var(--bg);}
   .week-summary{font-size:12px; color:var(--text-secondary); display:flex; gap:12px; flex-wrap:wrap; align-items:center;}
   .week-summary strong{color:var(--text); font-weight:600;}
   .week-summary .ws-cat{display:flex; align-items:center; gap:4px; white-space:nowrap;}
   .week-summary .ws-dot{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
 
   .legend-item{
-    background:none; border:none; padding:2px 6px; border-radius:6px; cursor:pointer;
+    background:var(--surface); border:1px solid var(--border); padding:5px 10px; border-radius:999px; cursor:pointer;
     display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text-secondary);
-    transition:opacity 0.15s ease, background 0.15s ease; font-family:inherit;
+    transition:opacity 0.15s ease, background 0.15s ease, border-color 0.15s ease; font-family:inherit;
   }
-  .legend-item:hover{background:var(--surface);}
-  .legend-item.muted{opacity:0.35;}
+  .legend-item:hover{background:var(--bg); border-color:#c7c7cc;}
+  .legend-item.muted{opacity:0.4;}
 
   .search-results{max-height:340px; overflow-y:auto; display:flex; flex-direction:column; gap:6px; margin-top:6px;}
   .search-result-item{
@@ -391,13 +413,65 @@
   .tool-links a{color:var(--text-secondary); font-size:12px; text-decoration:none;}
   .tool-links a:hover{color:var(--accent); text-decoration:underline;}
 
+  .mobile-day-view{display:none;}
+  .mobile-day-strip{display:flex; gap:4px; margin-bottom:12px;}
+  .mobile-day-tab{
+    flex:1; min-width:0; padding:8px 2px; border-radius:10px; border:1px solid var(--border);
+    background:var(--surface); text-align:center; cursor:pointer; font-family:inherit;
+  }
+  .mobile-day-tab .mdt-name{font-size:10px; color:var(--text-secondary); text-transform:uppercase; font-weight:600; letter-spacing:0.03em;}
+  .mobile-day-tab .mdt-num{font-size:15px; font-weight:600; margin-top:2px; color:var(--text);}
+  .mobile-day-tab .mdt-temp{font-size:9px; color:var(--text-secondary); margin-top:1px; min-height:11px;}
+  .mobile-day-tab.today{border-color:var(--accent);}
+  .mobile-day-tab.selected{background:var(--accent); border-color:var(--accent);}
+  .mobile-day-tab.selected .mdt-name, .mobile-day-tab.selected .mdt-num, .mobile-day-tab.selected .mdt-temp{color:#fff;}
+  .mobile-day-tab .mdt-dot{width:5px; height:5px; border-radius:50%; margin:4px auto 0;}
+
+  .mobile-day-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow:hidden; margin-bottom:20px;
+  }
+  .mobile-day-header{padding:14px 16px; border-bottom:1px solid var(--border); background:var(--bg);}
+  .mdh-row{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .mdh-date{font-size:15px; font-weight:600;}
+  .mdh-weather{font-size:12px; color:var(--text-secondary); margin-top:2px;}
+  .mobile-today-btn{
+    flex-shrink:0; padding:5px 12px; border-radius:999px; border:1px solid var(--accent);
+    background:none; color:var(--accent); font-size:12px; font-weight:600; cursor:pointer; font-family:inherit;
+  }
+  .mobile-today-btn:hover{background:var(--accent-light);}
+  .mobile-day-scroll{overflow-y:auto; max-height:70vh; position:relative;}
+  .mobile-day-grid{position:relative; display:grid; grid-template-columns:52px 1fr;}
+  .mobile-day-grid .time-axis{border-right:1px solid var(--border);}
+  .mobile-day-grid .day-col{touch-action:pan-y;}
+  .mobile-day-grid .event-pill{min-height:32px; font-size:12px; padding:6px 8px;}
+
+  @keyframes weekSlideIn{
+    from{ opacity:0; transform:translateX(6px); }
+    to{ opacity:1; transform:translateX(0); }
+  }
+  .week-slide{ animation: weekSlideIn 0.22s ease; }
+
+  @media print{
+    body{background:#fff; padding:0;}
+    .header-actions, .legend-bar, .side-nav-btn, .note-card, .backup-strip, .mobile-day-view,
+    .greeting-line, .modal-overlay, .snackbar, .add-day-btn, .grid-top-bar{ display:none !important; }
+    .table-card{box-shadow:none; border:1px solid #ccc;}
+    .table-scroll{overflow:visible;}
+    .week-grid{min-width:0;}
+    .event-pill{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
   @media (max-width: 700px){
     body{padding:20px 12px 60px;}
     header{flex-direction:column; align-items:flex-start;}
     .header-right{width:100%; align-items:flex-start;}
     .header-actions{width:100%; justify-content:space-between;}
-    .today-summary{justify-content:flex-start;}
+    .today-summary{align-items:flex-start;}
     .modal-row{grid-template-columns:1fr;}
+    .modal-overlay{padding:10px;}
+    .modal-field input, .modal-field select, .modal-field textarea{padding:12px; font-size:16px;}
+    .table-card{display:none;}
+    .mobile-day-view{display:block;}
   }
 </style>
 </head>
@@ -407,15 +481,10 @@
   <header>
     <div class="title-block">
       <h1>Weekagenda</h1>
-      <p id="greetingLine" class="greeting-line"></p>
+      <p id="greetingLine" class="greeting-line" title="Klik om je naam in te stellen"></p>
     </div>
     <div class="header-right">
       <div class="header-actions">
-        <div class="icon-btn-group">
-          <button id="searchBtn" class="icon-btn" title="Zoeken in agenda">🔍</button>
-          <button id="vacationBtn" class="icon-btn" title="Vakantie plannen">🏖️</button>
-          <button id="syncBtn" class="icon-btn" title="Synchronisatie tussen apparaten">🔄</button>
-        </div>
         <div class="week-nav-pill">
           <button id="prevWeek" class="nav-arrow" aria-label="Vorige week">‹</button>
           <div class="week-label-wrap">
@@ -425,10 +494,10 @@
           <button id="nextWeek" class="nav-arrow" aria-label="Volgende week">›</button>
           <div class="pill-divider"></div>
           <button id="todayBtn" class="pill-text-btn">Vandaag</button>
-          <button id="themeToggleBtn" class="theme-toggle-btn" title="Donkere modus">🌙</button>
+          <button id="themeToggleBtn" class="theme-toggle-btn" title="Donkere modus" aria-label="Donkere modus"></button>
         </div>
       </div>
-      <div class="today-summary" id="todaySummaryLine">Weerbericht wordt geladen…</div>
+      <div class="today-summary" id="todaySummaryLine"><span class="shimmer-line"></span></div>
     </div>
   </header>
 
@@ -439,18 +508,37 @@
     <button id="locationCancelBtn">Annuleren</button>
   </div>
 
-  <div class="legend-row" id="legendRow"></div>
+  <div class="legend-bar">
+    <div class="legend-row" id="legendRow"></div>
+    <div class="icon-btn-group">
+      <button id="searchBtn" class="icon-btn" title="Zoeken in agenda" aria-label="Zoeken in agenda"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button id="vacationBtn" class="icon-btn" title="Vakantie plannen" aria-label="Vakantie plannen"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="3" y1="12" x2="21" y2="12"></line></svg></button>
+      <button id="syncBtn" class="icon-btn" title="Synchronisatie tussen apparaten" aria-label="Synchronisatie tussen apparaten"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></button>
+    </div>
+  </div>
 
   <div class="table-card">
-    <div class="grid-top-bar">
-      <div class="inline-week-nav">
-        <button id="prevWeekInline" aria-label="Vorige week">‹</button>
-        <button id="nextWeekInline" aria-label="Volgende week">›</button>
+    <button id="prevWeekSide" class="side-nav-btn" aria-label="Vorige week">‹</button>
+    <div class="table-card-main">
+      <div class="grid-top-bar">
+        <div class="week-summary" id="weekSummary"></div>
       </div>
-      <div class="week-summary" id="weekSummary"></div>
+      <div class="table-scroll">
+        <div class="week-grid" id="weekGrid"></div>
+      </div>
     </div>
-    <div class="table-scroll">
-      <div class="week-grid" id="weekGrid"></div>
+    <button id="nextWeekSide" class="side-nav-btn" aria-label="Volgende week">›</button>
+  </div>
+
+  <!-- Alleen zichtbaar op kleine schermen (zie media query) — de desktop-grid hierboven
+       blijft op grotere schermen ongewijzigd en onaangeroerd. -->
+  <div class="mobile-day-view" id="mobileDayView">
+    <div class="mobile-day-strip" id="mobileDayStrip"></div>
+    <div class="mobile-day-card">
+      <div class="mobile-day-header" id="mobileDayHeader"></div>
+      <div class="mobile-day-scroll">
+        <div class="mobile-day-grid" id="mobileDayGrid"></div>
+      </div>
     </div>
   </div>
 
@@ -458,14 +546,14 @@
     <div class="ai-header-row">
       <div>
         <h2>AI-assistent</h2>
-        <p class="note-sub">Typ of spreek in wat er in je agenda moet — afspraken én vakanties — of voeg, met een eigen API-sleutel, een screenshot van je rooster toe.</p>
+        <p class="note-sub">Typ, spreek of stuur — met eigen API-sleutel — een screenshot. Voor afspraken én vakanties.</p>
       </div>
       <button id="aiSettingsBtn" class="ai-settings-btn">Instellingen</button>
     </div>
     <div class="ai-status-line" id="aiStatusLine">Offline tekstherkenning actief — geen API-sleutel ingesteld.</div>
 
     <div class="ai-input-area">
-      <textarea id="aiInput" placeholder="Bijv.: dinsdag 14:00-16:00 werkoverleg met Sanne&#10;woensdag 09:00-10:30 wiskunde&#10;vakantie van 3 tot 10 augustus naar Portugal"></textarea>
+      <textarea id="aiInput" placeholder=""></textarea>
       <div class="ai-image-preview" id="aiImagePreview">
         <img id="aiImagePreviewThumb" alt="">
         <span>Screenshot toegevoegd</span>
@@ -492,25 +580,23 @@
     </div>
   </div>
 
-  <div class="note-card">
-    <h2>Back-up</h2>
-    <p class="note-sub">Exporteer of importeer je agenda als JSON-bestand. Je API-sleutel wordt apart bewaard en zit nooit in deze export. Feestdagen worden automatisch berekend.</p>
+  <div class="backup-strip">
+    <span class="backup-label" title="Exporteer of importeer je agenda als JSON-bestand. Je API-sleutel zit nooit in deze export. Feestdagen worden altijd automatisch berekend.">💾 Back-up</span>
     <div class="backup-actions">
-      <button id="exportBtn">Exporteren</button>
-      <button id="importBtn">Importeren</button>
+      <button id="exportBtn">⬇️ Exporteren</button>
+      <button id="importBtn">⬆️ Importeren</button>
       <input type="file" id="importFile" accept="application/json" style="display:none;">
     </div>
   </div>
 
   <footer>
     <span id="saveStatus" class="save-status">Alles wordt automatisch lokaal opgeslagen.</span>
-    <div class="tool-links"><a href="Consistency Dashboard.html">← Terug naar Consistency Dashboard</a></div>
   </footer>
 </div>
 
 <!-- Afspraak toevoegen/bewerken -->
 <div class="modal-overlay" id="eventModalOverlay">
-  <div class="modal-card">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="eventModalTitle">
     <button class="modal-close" id="eventModalClose">✕</button>
     <h2 id="eventModalTitle">Afspraak toevoegen</h2>
     <div class="modal-field">
@@ -573,7 +659,7 @@
 
 <!-- Vakantie -->
 <div class="modal-overlay" id="vacationModalOverlay">
-  <div class="modal-card">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="vacationModalTitle">
     <button class="modal-close" id="vacationModalClose">✕</button>
     <h2 id="vacationModalTitle">Vakantie plannen</h2>
     <div class="modal-field">
@@ -610,9 +696,9 @@
 
 <!-- Synchronisatie -->
 <div class="modal-overlay" id="syncModalOverlay">
-  <div class="modal-card">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="syncModalTitle">
     <button class="modal-close" id="syncModalClose">✕</button>
-    <h2>Synchronisatie tussen apparaten</h2>
+    <h2 id="syncModalTitle">Synchronisatie tussen apparaten</h2>
     <p class="modal-note">
       Dit koppelt je agenda aan een gratis online opslagplek (jsonbin.io), zodat meerdere apparaten dezelfde agenda kunnen bijhouden.
       Je hebt hiervoor een gratis account nodig op jsonbin.io — maak er een aan, ga naar "API Keys" in je dashboard en kopieer je Master Key hieronder.
@@ -644,9 +730,9 @@
 
 <!-- Zoeken -->
 <div class="modal-overlay" id="searchModalOverlay">
-  <div class="modal-card">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
     <button class="modal-close" id="searchModalClose">✕</button>
-    <h2>Zoeken in agenda</h2>
+    <h2 id="searchModalTitle">Zoeken in agenda</h2>
     <div class="modal-field">
       <input type="text" id="searchInput" placeholder="Zoek op titel, met wie of notitie…">
     </div>
@@ -662,9 +748,9 @@
 
 <!-- AI instellingen -->
 <div class="modal-overlay" id="settingsModalOverlay">
-  <div class="modal-card">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
     <button class="modal-close" id="settingsModalClose">✕</button>
-    <h2>AI-instellingen</h2>
+    <h2 id="settingsModalTitle">AI-instellingen</h2>
     <p class="modal-note">
       Met een eigen Google Gemini API-sleutel praat dit bestand rechtstreeks vanuit je browser met de Gemini API — er is geen server tussenin.
       De sleutel wordt alleen lokaal in je browser bewaard (los van je agenda-back-up) en rechtstreeks naar Google verstuurd.
@@ -689,6 +775,8 @@
 </div>
 
 <script>
+(function(){
+'use strict';
 /* ================= Constanten ================= */
 const STORAGE_KEY = "weekagenda-state-v1";
 const AI_SETTINGS_KEY = "weekagenda-ai-settings-v1";
@@ -702,7 +790,6 @@ const CATEGORIES = [
   { key:"werk",        label:"Werk",        color:"#1D2A4A", darkColor:"#7C93C9" },
   { key:"school",      label:"School",      color:"#2088D9", darkColor:"#4DA8F0" },
   { key:"sport",       label:"Sport",       color:"#E4423C", darkColor:"#FF6E67" },
-  { key:"persoonlijk", label:"Persoonlijk", color:"#5B4B8A", darkColor:"#9B87D4" },
   { key:"sociaal",     label:"Sociaal",     color:"#E38A55", darkColor:"#F0A374" },
   { key:"overig",      label:"Overig",      color:"#A89478", darkColor:"#C4B393" }
 ];
@@ -732,6 +819,7 @@ let pendingImage = null;     // { mediaType, data, previewUrl }
 let aiPreviewItems = [];     // voorstellen van de AI/offline-parser
 let recognition = null;
 let lastAction = null; // voor "ongedaan maken" — { type:"delete", ... } of { type:"move", ... }
+let lastFocusedElement = null; // voor focus-teruggave na het sluiten van een venster (toegankelijkheid)
 let undoTimeoutId = null;
 let syncPushTimer = null;
 
@@ -748,13 +836,16 @@ function getEffectiveTheme(){
   // Nog nooit expliciet gekozen: volg de systeeminstelling van het apparaat.
   return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
 }
+const SUN_ICON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
+const MOON_ICON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
 function applyTheme(){
   const theme = getEffectiveTheme();
   document.documentElement.classList.toggle("dark-mode", theme==="dark");
   const btn = document.getElementById("themeToggleBtn");
   if(btn){
-    btn.textContent = theme==="dark" ? "☀️" : "🌙";
+    btn.innerHTML = theme==="dark" ? SUN_ICON : MOON_ICON;
     btn.title = theme==="dark" ? "Lichte modus" : "Donkere modus";
+    btn.setAttribute("aria-label", btn.title);
   }
 }
 document.getElementById("themeToggleBtn").addEventListener("click", ()=>{
@@ -961,21 +1052,19 @@ function updateTodaySummaryLine(){
   const el = document.getElementById("todaySummaryLine");
   if(!el) return;
   const today = new Date();
-  const dateLabel = `${WEEKDAY_LONG[(today.getDay()+6)%7]} ${today.getDate()} ${MONTH_LONG[today.getMonth()]}`;
   const w = state.weatherCache[isoDate(today)];
 
-  const parts = [escapeHtml(dateLabel)];
+  const locLine = state.location
+    ? `${escapeHtml(state.location.name)} <button type="button" id="summaryLocationEditBtn" class="location-edit-link">wijzigen</button>`
+    : `<button type="button" id="summaryLocationEditBtn" class="location-edit-link">Locatie instellen</button>`;
+
+  let weatherLine = "";
   if(w){
-    let weatherBit = `${weatherEmoji(w.code)} ${w.max}°C`;
-    if(w.precip != null) weatherBit += ` · ${w.precip}% regenkans`;
-    parts.push(weatherBit);
+    weatherLine = `${weatherEmoji(w.code)} ${w.max}°C`;
+    if(w.precip != null) weatherLine += ` · ${w.precip}% regenkans`;
   }
-  if(state.location){
-    parts.push(`${escapeHtml(state.location.name)} <button type="button" id="summaryLocationEditBtn" class="location-edit-link">wijzigen</button>`);
-  } else {
-    parts.push(`<button type="button" id="summaryLocationEditBtn" class="location-edit-link">Locatie instellen</button>`);
-  }
-  el.innerHTML = parts.join(' <span class="ts-sep">·</span> ');
+
+  el.innerHTML = `<div class="ts-location">${locLine}</div>${weatherLine ? `<div class="ts-weather">${weatherLine}</div>` : ""}`;
   const btn = document.getElementById("summaryLocationEditBtn");
   if(btn) btn.addEventListener("click", toggleLocationForm);
 }
@@ -1149,8 +1238,7 @@ function renderLegend(){
   row.innerHTML = CATEGORIES.map(c=>{
     const muted = uiPrefs.hiddenCategories.includes(c.key) ? " muted" : "";
     return `<button type="button" class="legend-item${muted}" data-cat="${c.key}" title="Klik om te tonen/verbergen"><span class="legend-dot" style="background:${categoryColor(c)}"></span>${c.label}</button>`;
-  }).join("")
-    + `<div class="legend-item" style="cursor:default;"><span class="legend-dot" style="background:#e2b93b"></span>Feestdag / bijzondere dag</div>`;
+  }).join("");
 }
 document.getElementById("legendRow").addEventListener("click",(e)=>{
   const btn = e.target.closest(".legend-item[data-cat]");
@@ -1282,14 +1370,48 @@ function updateGreeting(){
   else if(h>=12 && h<18) greeting = "Goedemiddag";
   else if(h>=18 && h<23) greeting = "Goedenavond";
   else greeting = "Goedenacht";
-  el.textContent = `${greeting} Nathan`;
+  const name = uiPrefs.greetingName ? ` ${uiPrefs.greetingName}` : "";
+  el.textContent = `${greeting}${name}`;
 }
+document.getElementById("greetingLine").addEventListener("click", ()=>{
+  const input = prompt("Hoe mag ik je noemen? (leeg laten om de naam weg te halen)", uiPrefs.greetingName || "");
+  if(input === null) return;
+  uiPrefs.greetingName = input.trim();
+  saveUIPrefs();
+  updateGreeting();
+});
 function updateNowIndicator(){
-  document.querySelectorAll(".now-line, .now-label").forEach(el=>el.remove());
+  const weekGrid = document.getElementById("weekGrid");
+  if(!weekGrid) return;
+  weekGrid.querySelectorAll(".now-line, .now-label").forEach(el=>el.remove());
   const todayStr = isoDate(new Date());
-  const col = document.querySelector(`.day-col[data-date="${todayStr}"]`);
-  const axis = document.querySelector(".time-axis");
+  const col = weekGrid.querySelector(`.day-col[data-date="${todayStr}"]`);
+  const axis = weekGrid.querySelector(".time-axis");
   if(!col || !axis) return; // huidige week bevat vandaag niet
+  const now = new Date();
+  const hrs = now.getHours() + now.getMinutes()/60;
+  if(hrs < START_HOUR || hrs > END_HOUR) return;
+  const top = (hrs - START_HOUR) * ROW_HEIGHT;
+
+  const line = document.createElement("div");
+  line.className = "now-line";
+  line.style.top = top + "px";
+  col.appendChild(line);
+
+  const label = document.createElement("div");
+  label.className = "now-label";
+  label.style.top = top + "px";
+  label.textContent = `${pad2(now.getHours())}:${pad2(now.getMinutes())}`;
+  axis.appendChild(label);
+}
+function updateMobileNowIndicator(){
+  const mobileGrid = document.getElementById("mobileDayGrid");
+  if(!mobileGrid) return;
+  mobileGrid.querySelectorAll(".now-line, .now-label").forEach(el=>el.remove());
+  const todayStr = isoDate(new Date());
+  const col = mobileGrid.querySelector(`.day-col[data-date="${todayStr}"]`);
+  const axis = mobileGrid.querySelector(".time-axis");
+  if(!col || !axis) return; // de weergegeven dag is niet vandaag
   const now = new Date();
   const hrs = now.getHours() + now.getMinutes()/60;
   if(hrs < START_HOUR || hrs > END_HOUR) return;
@@ -1327,19 +1449,142 @@ function renderWeekSummary(days){
   el.innerHTML = `<strong>${count} ${count===1?"afspraak":"afspraken"} deze week</strong>` + (parts.length ? " · " + parts.join(" · ") : "");
 }
 
+/* ================= Mobiele dagweergave (los van de desktop-grid hierboven) ================= */
+function playSlideAnimation(el){
+  if(!el) return;
+  el.classList.remove("week-slide");
+  void el.offsetWidth; // forceert reflow zodat de animatie opnieuw start
+  el.classList.add("week-slide");
+}
+function renderMobileDayStrip(days, todayStr, selectedStr){
+  const strip = document.getElementById("mobileDayStrip");
+  strip.innerHTML = days.map(d=>{
+    const iso = isoDate(d);
+    const holiday = getHoliday(iso);
+    const vacation = state.vacations.find(v => iso >= v.start && iso <= v.end);
+    const hasEvents = state.events.some(e=>e.date===iso && !uiPrefs.hiddenCategories.includes(e.category));
+    let dotColor = "transparent";
+    if(holiday) dotColor = "#e2b93b";
+    else if(vacation) dotColor = "var(--vacation-text)";
+    else if(hasEvents) dotColor = "var(--accent)";
+    const classes = ["mobile-day-tab"];
+    if(iso===todayStr) classes.push("today");
+    if(iso===selectedStr) classes.push("selected");
+    const w = state.weatherCache[iso];
+    const tempLabel = w ? `${w.max}°` : "";
+    return `<button type="button" class="${classes.join(" ")}" data-date="${iso}">
+      <div class="mdt-name">${WEEKDAY_SHORT[(d.getDay()+6)%7]}</div>
+      <div class="mdt-num">${d.getDate()}</div>
+      <div class="mdt-temp">${tempLabel}</div>
+      <div class="mdt-dot" style="background:${dotColor}"></div>
+    </button>`;
+  }).join("");
+}
+function renderMobileDayContent(dayDate){
+  const iso = isoDate(dayDate);
+  const todayStr = isoDate(new Date());
+  const bodyHeight = (END_HOUR-START_HOUR)*ROW_HEIGHT;
+
+  const holiday = getHoliday(iso);
+  const vacation = state.vacations.find(v => iso >= v.start && iso <= v.end);
+  const w = state.weatherCache[iso];
+  const header = document.getElementById("mobileDayHeader");
+  header.innerHTML = `
+    <div class="mdh-row">
+      <div>
+        <div class="mdh-date">${WEEKDAY_LONG[(dayDate.getDay()+6)%7]} ${dayDate.getDate()} ${MONTH_LONG[dayDate.getMonth()]}</div>
+        <div class="mdh-weather">${w ? `${weatherEmoji(w.code)} ${w.max}° / ${w.min}°${w.precip!=null?` · ${w.precip}% regenkans`:""}` : (state.location ? "geen voorspelling" : "")}</div>
+      </div>
+      ${iso!==todayStr ? `<button type="button" id="mobileTodayBtn" class="mobile-today-btn">Vandaag</button>` : ""}
+    </div>
+    ${holiday ? `<div class="holiday-badge ${holiday.official?"official":"casual"}">${escapeHtml(holiday.name)}</div>` : ""}
+    ${vacation ? `<button type="button" class="vacation-badge" data-vacation-id="${vacation.id}">🏖️ ${escapeHtml(vacation.title)}${vacation.destination?" · "+escapeHtml(vacation.destination):""}</button>` : ""}
+  `;
+
+  const grid = document.getElementById("mobileDayGrid");
+  grid.innerHTML = "";
+
+  const axis = document.createElement("div");
+  axis.className = "time-axis";
+  axis.style.height = bodyHeight + "px";
+  for(let h=START_HOUR; h<END_HOUR; h++){
+    const lbl = document.createElement("div");
+    lbl.className = "time-label";
+    lbl.style.top = ((h-START_HOUR)*ROW_HEIGHT) + "px";
+    lbl.textContent = `${pad2(h)}:00`;
+    axis.appendChild(lbl);
+  }
+  grid.appendChild(axis);
+
+  const col = document.createElement("div");
+  col.className = "day-col" + (iso===todayStr ? " today" : "");
+  col.style.height = bodyHeight + "px";
+  col.dataset.date = iso;
+
+  const dayEvents = layoutDayEvents(state.events.filter(e=>e.date===iso && !uiPrefs.hiddenCategories.includes(e.category)));
+  dayEvents.forEach(ev=>{
+    const cat = CATEGORIES.find(c=>c.key===ev.category) || CATEGORIES[CATEGORIES.length-1];
+    const startMin = toMinutes(ev.start), endMin = toMinutes(ev.end);
+    const top = Math.max(0, (startMin/60 - START_HOUR) * ROW_HEIGHT);
+    const height = Math.max(32, (endMin-startMin)/60 * ROW_HEIGHT - 2);
+    const widthPct = 100 / ev._totalCols;
+    const leftPct = ev._col * widthPct;
+
+    const pill = document.createElement("div");
+    pill.className = "event-pill";
+    pill.style.top = top + "px";
+    pill.style.height = height + "px";
+    pill.style.left = `calc(${leftPct}% + 2px)`;
+    pill.style.width = `calc(${widthPct}% - 4px)`;
+    pill.style.background = categoryPillBg(cat);
+    pill.style.borderLeft = `3px solid ${categoryColor(cat)}`;
+    pill.style.color = categoryColor(cat);
+    pill.dataset.id = ev.id;
+    pill.innerHTML = `<div class="event-title">${ev.recurrenceId?"🔁 ":""}${escapeHtml(ev.title)}</div><div class="event-time">${ev.start}–${ev.end}</div>${ev.withWho?`<div class="event-with">👥 ${escapeHtml(ev.withWho)}</div>`:""}`;
+    col.appendChild(pill);
+  });
+
+  grid.appendChild(col);
+  updateMobileNowIndicator();
+}
+function renderMobileView(days){
+  const todayStr = isoDate(new Date());
+  const selectedStr = isoDate(current);
+  renderMobileDayStrip(days, todayStr, selectedStr);
+  renderMobileDayContent(current);
+  playSlideAnimation(document.getElementById("mobileDayGrid"));
+}
+
+function isMobileView(){
+  return window.matchMedia("(max-width: 700px)").matches;
+}
 function render(){
   const monday = getMonday(current);
   const days = getCurrentWeekDays();
   document.getElementById("weekLabel").textContent = formatWeekLabel(monday);
-  renderGrid(days);
-  updateWeatherUI(days);
-  updateNowIndicator();
   renderWeekSummary(days);
+  if(isMobileView()){
+    renderMobileView(days);
+  } else {
+    renderGrid(days);
+    updateWeatherUI(days);
+    updateNowIndicator();
+    playSlideAnimation(document.getElementById("weekGrid"));
+  }
 }
+let lastKnownMobileState = null;
+window.addEventListener("resize", ()=>{
+  const nowMobile = isMobileView();
+  if(nowMobile !== lastKnownMobileState){
+    lastKnownMobileState = nowMobile;
+    render();
+  }
+});
 
 /* ================= Afspraak-modal (toevoegen/bewerken) ================= */
 const eventModalOverlay = document.getElementById("eventModalOverlay");
 function openEventModal({ id=null, date, start="09:00", end="10:00", title="", category="overig", withWho="", notes="", recurrenceId=null }){
+  lastFocusedElement = document.activeElement;
   editingEventId = id;
   editingEventRecurrenceId = recurrenceId;
   document.getElementById("eventModalTitle").textContent = id ? "Afspraak bewerken" : "Afspraak toevoegen";
@@ -1353,6 +1598,7 @@ function openEventModal({ id=null, date, start="09:00", end="10:00", title="", c
   document.getElementById("modalWith").value = withWho;
   document.getElementById("modalNotes").value = notes;
   document.getElementById("modalDeleteBtn").style.display = id ? "inline-block" : "none";
+  document.getElementById("modalDeleteBtn").textContent = recurrenceId ? "Deze week overslaan" : "Verwijderen";
 
   const repeatRow = document.getElementById("modalRepeatRow");
   const repeatUntilWrap = document.getElementById("modalRepeatUntilWrap");
@@ -1389,7 +1635,12 @@ document.getElementById("modalRepeat").addEventListener("change", ()=>{
     untilInput.value = isoDate(addDays(startDate, 13*7)); // standaard ~3 maanden vooruit
   }
 });
-function closeEventModal(){ eventModalOverlay.classList.remove("open"); editingEventId = null; editingEventRecurrenceId = null; }
+function closeEventModal(){
+  eventModalOverlay.classList.remove("open");
+  editingEventId = null;
+  editingEventRecurrenceId = null;
+  if(lastFocusedElement){ lastFocusedElement.focus(); lastFocusedElement = null; }
+}
 
 document.getElementById("eventModalClose").addEventListener("click", closeEventModal);
 document.getElementById("modalCancelBtn").addEventListener("click", closeEventModal);
@@ -1525,12 +1776,16 @@ document.getElementById("modalDeleteBtn").addEventListener("click", ()=>{
 /* ================= Zoeken ================= */
 const searchModalOverlay = document.getElementById("searchModalOverlay");
 function openSearchModal(){
+  lastFocusedElement = document.activeElement;
   searchModalOverlay.classList.add("open");
   document.getElementById("searchInput").value = "";
   document.getElementById("searchResults").innerHTML = "";
   document.getElementById("searchInput").focus();
 }
-function closeSearchModal(){ searchModalOverlay.classList.remove("open"); }
+function closeSearchModal(){
+  searchModalOverlay.classList.remove("open");
+  if(lastFocusedElement){ lastFocusedElement.focus(); lastFocusedElement = null; }
+}
 document.getElementById("searchBtn").addEventListener("click", openSearchModal);
 document.getElementById("searchModalClose").addEventListener("click", closeSearchModal);
 searchModalOverlay.addEventListener("click",(e)=>{ if(e.target===searchModalOverlay) closeSearchModal(); });
@@ -1568,7 +1823,19 @@ document.getElementById("searchResults").addEventListener("click",(e)=>{
 });
 
 document.addEventListener("keydown",(e)=>{
-  if(e.key==="Escape"){ closeEventModal(); closeSettingsModal(); closeSearchModal(); closeVacationModal(); closeSyncModal(); }
+  if(e.key==="Escape"){ closeEventModal(); closeSettingsModal(); closeSearchModal(); closeVacationModal(); closeSyncModal(); return; }
+
+  const tag = (e.target.tagName || "").toLowerCase();
+  const isTyping = tag==="input" || tag==="textarea" || tag==="select" || e.target.isContentEditable;
+  const modalOpen = document.querySelectorAll(".modal-overlay.open").length > 0;
+  if(isTyping || modalOpen) return;
+
+  if(e.key==="ArrowLeft"){ goPrevWeek(); }
+  else if(e.key==="ArrowRight"){ goNextWeek(); }
+  else if(e.key.toLowerCase()==="n" && !e.metaKey && !e.ctrlKey && !e.altKey){
+    e.preventDefault();
+    openEventModal({ date: isoDate(current), start:"09:00", end:"10:00" });
+  }
 });
 
 /* Klik op de agenda: leeg vak = toevoegen, bestaande afspraak = bewerken */
@@ -1765,12 +2032,16 @@ async function createNewSync(apiKey){
 
 const syncModalOverlay = document.getElementById("syncModalOverlay");
 function openSyncModal(){
+  lastFocusedElement = document.activeElement;
   document.getElementById("syncApiKeyInput").value = syncSettings.apiKey || "";
   document.getElementById("syncIdInput").value = syncSettings.binId || "";
   setSyncStatus(syncReady() ? `Sync actief (bin: ${syncSettings.binId})` : "Synchronisatie is uitgeschakeld.", syncReady());
   syncModalOverlay.classList.add("open");
 }
-function closeSyncModal(){ syncModalOverlay.classList.remove("open"); }
+function closeSyncModal(){
+  syncModalOverlay.classList.remove("open");
+  if(lastFocusedElement){ lastFocusedElement.focus(); lastFocusedElement = null; }
+}
 document.getElementById("syncBtn").addEventListener("click", openSyncModal);
 document.getElementById("syncModalClose").addEventListener("click", closeSyncModal);
 document.getElementById("syncModalCloseBtn2").addEventListener("click", closeSyncModal);
@@ -1818,10 +2089,99 @@ document.getElementById("syncNowBtn").addEventListener("click", async ()=>{
   await pullStateFromSync();
 });
 
+/* ================= Mobiele interactie (los van de desktop-listeners) ================= */
+document.getElementById("mobileDayStrip").addEventListener("click",(e)=>{
+  const tab = e.target.closest(".mobile-day-tab");
+  if(!tab) return;
+  const [y,m,d] = tab.dataset.date.split("-").map(Number);
+  current = new Date(y, m-1, d);
+  render();
+});
+document.getElementById("mobileDayHeader").addEventListener("click",(e)=>{
+  if(e.target.closest("#mobileTodayBtn")){ current = new Date(); render(); return; }
+  const vb = e.target.closest(".vacation-badge");
+  if(!vb) return;
+  const vac = state.vacations.find(v=>v.id===vb.dataset.vacationId);
+  if(vac) openVacationModal(vac);
+});
+document.getElementById("mobileDayGrid").addEventListener("click",(e)=>{
+  const pill = e.target.closest(".event-pill");
+  if(pill){
+    const ev = state.events.find(x=>x.id===pill.dataset.id);
+    if(ev) openEventModal({ id:ev.id, date:ev.date, start:ev.start, end:ev.end, title:ev.title, category:ev.category, withWho:ev.withWho||"", notes:ev.notes||"", recurrenceId:ev.recurrenceId||null });
+    return;
+  }
+  const col = e.target.closest(".day-col");
+  if(col){
+    const startMin = computeSnappedMinutesFromY(col, e.clientY);
+    const clampedStartMin = Math.min(startMin, END_HOUR*60 - 30);
+    const start = normalizeTimeStr(minutesToTimeStr(clampedStartMin));
+    const endMin = Math.min(clampedStartMin + 60, END_HOUR*60);
+    const end = normalizeTimeStr(minutesToTimeStr(endMin));
+    openEventModal({ date: col.dataset.date, start, end });
+  }
+});
+
+/* Slepen om de tijd van een afspraak te verzetten (dag wisselt hier via de stripjes/swipe, niet via slepen) */
+let mobileDragState = null;
+document.getElementById("mobileDayGrid").addEventListener("pointerdown",(e)=>{
+  const pill = e.target.closest(".event-pill");
+  if(!pill) return;
+  mobileDragState = { id: pill.dataset.id, pillEl: pill, startX: e.clientX, startY: e.clientY, dragging:false, pointerId: e.pointerId };
+});
+document.getElementById("mobileDayGrid").addEventListener("pointermove",(e)=>{
+  if(!mobileDragState || mobileDragState.pointerId !== e.pointerId) return;
+  const dx = e.clientX - mobileDragState.startX, dy = e.clientY - mobileDragState.startY;
+  if(!mobileDragState.dragging && Math.hypot(dx,dy) > DRAG_THRESHOLD){
+    mobileDragState.dragging = true;
+    mobileDragState.pillEl.classList.add("dragging");
+    mobileDragState.pillEl.style.touchAction = "none";
+    try{ mobileDragState.pillEl.setPointerCapture(e.pointerId); }catch(err){}
+  }
+  if(mobileDragState.dragging) e.preventDefault();
+}, { passive:false });
+document.getElementById("mobileDayGrid").addEventListener("pointerup",(e)=>{
+  if(!mobileDragState || mobileDragState.pointerId !== e.pointerId) return;
+  if(mobileDragState.dragging){
+    const col = document.querySelector("#mobileDayGrid .day-col");
+    if(col){
+      const startMin = computeSnappedMinutesFromY(col, e.clientY);
+      moveEventToDateTime(mobileDragState.id, col.dataset.date, minutesToTimeStr(startMin));
+    }
+    mobileDragState.pillEl.classList.remove("dragging");
+    render();
+  }
+  mobileDragState = null;
+});
+document.getElementById("mobileDayGrid").addEventListener("pointercancel",()=>{
+  if(mobileDragState) mobileDragState.pillEl.classList.remove("dragging");
+  mobileDragState = null;
+});
+
+/* Vegen om van dag te wisselen */
+let mobileSwipeState = null;
+const mobileDayScrollEl = document.querySelector(".mobile-day-scroll");
+mobileDayScrollEl.addEventListener("pointerdown",(e)=>{
+  if(e.target.closest(".event-pill")) return; // die heeft zijn eigen sleep-interactie
+  mobileSwipeState = { startX: e.clientX, startY: e.clientY, pointerId: e.pointerId };
+});
+mobileDayScrollEl.addEventListener("pointerup",(e)=>{
+  if(!mobileSwipeState || mobileSwipeState.pointerId !== e.pointerId) return;
+  const dx = e.clientX - mobileSwipeState.startX;
+  const dy = e.clientY - mobileSwipeState.startY;
+  if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5){
+    current = addDays(current, dx < 0 ? 1 : -1);
+    render();
+  }
+  mobileSwipeState = null;
+});
+mobileDayScrollEl.addEventListener("pointercancel",()=>{ mobileSwipeState = null; });
+
 /* ================= Vakantie-modal ================= */
 const vacationModalOverlay = document.getElementById("vacationModalOverlay");
 let editingVacationId = null;
 function openVacationModal(vac){
+  lastFocusedElement = document.activeElement;
   editingVacationId = vac ? vac.id : null;
   document.getElementById("vacationModalTitle").textContent = vac ? "Vakantie bewerken" : "Vakantie plannen";
   document.getElementById("vacationTitleInput").value = vac ? vac.title : "";
@@ -1833,7 +2193,11 @@ function openVacationModal(vac){
   vacationModalOverlay.classList.add("open");
   document.getElementById("vacationTitleInput").focus();
 }
-function closeVacationModal(){ vacationModalOverlay.classList.remove("open"); editingVacationId = null; }
+function closeVacationModal(){
+  vacationModalOverlay.classList.remove("open");
+  editingVacationId = null;
+  if(lastFocusedElement){ lastFocusedElement.focus(); lastFocusedElement = null; }
+}
 document.getElementById("vacationBtn").addEventListener("click", ()=> openVacationModal(null));
 document.getElementById("vacationModalClose").addEventListener("click", closeVacationModal);
 document.getElementById("vacationCancelBtn").addEventListener("click", closeVacationModal);
@@ -1875,11 +2239,15 @@ document.getElementById("vacationDeleteBtn").addEventListener("click", ()=>{
 /* ================= AI-instellingen modal ================= */
 const settingsModalOverlay = document.getElementById("settingsModalOverlay");
 function openSettingsModal(){
+  lastFocusedElement = document.activeElement;
   document.getElementById("settingsApiKey").value = aiSettings.apiKey || "";
   document.getElementById("settingsModel").value = aiSettings.model || "gemini-3.6-flash";
   settingsModalOverlay.classList.add("open");
 }
-function closeSettingsModal(){ settingsModalOverlay.classList.remove("open"); }
+function closeSettingsModal(){
+  settingsModalOverlay.classList.remove("open");
+  if(lastFocusedElement){ lastFocusedElement.focus(); lastFocusedElement = null; }
+}
 document.getElementById("aiSettingsBtn").addEventListener("click", openSettingsModal);
 document.getElementById("settingsModalClose").addEventListener("click", closeSettingsModal);
 document.getElementById("settingsCancelBtn").addEventListener("click", closeSettingsModal);
@@ -2105,7 +2473,7 @@ Categorieën (gebruik exact een van deze sleutels): ${CATEGORY_KEYS.join(", ")}.
 Retourneer UITSLUITEND een JSON-array, zonder uitleg, zonder markdown-hekjes. Elk item heeft een "type"-veld: "event" voor een normale afspraak met een tijdstip, of "vacation" voor een vakantie / vrije periode van één of meer dagen.
 
 Formaat voor "event":
-{"type":"event","date":"YYYY-MM-DD","title":"...","start":"HH:MM","end":"HH:MM","category":"werk|school|sport|persoonlijk|sociaal|overig","withWho":"","notes":""}
+{"type":"event","date":"YYYY-MM-DD","title":"...","start":"HH:MM","end":"HH:MM","category":"${CATEGORY_KEYS.join("|")}","withWho":"","notes":""}
 
 Formaat voor "vacation":
 {"type":"vacation","title":"...","start":"YYYY-MM-DD","end":"YYYY-MM-DD","destination":"","notes":""}
@@ -2307,8 +2675,8 @@ function goToday(){ current = new Date(); render(); }
 
 document.getElementById("prevWeek").addEventListener("click", goPrevWeek);
 document.getElementById("nextWeek").addEventListener("click", goNextWeek);
-document.getElementById("prevWeekInline").addEventListener("click", goPrevWeek);
-document.getElementById("nextWeekInline").addEventListener("click", goNextWeek);
+document.getElementById("prevWeekSide").addEventListener("click", goPrevWeek);
+document.getElementById("nextWeekSide").addEventListener("click", goNextWeek);
 document.getElementById("todayBtn").addEventListener("click", goToday);
 
 /* Klikbaar weeklabel: spring naar een zelfgekozen datum */
@@ -2383,15 +2751,27 @@ window.addEventListener("beforeunload", saveState);
 applyTheme();
 updateGreeting();
 renderLegend();
+lastKnownMobileState = isMobileView();
 render();
 initWeather();
 initSpeech();
 updateAIStatusLine();
-setInterval(()=>{ updateNowIndicator(); updateGreeting(); }, 60000);
+setInterval(()=>{ updateNowIndicator(); updateMobileNowIndicator(); updateGreeting(); }, 60000);
 if(syncSettings.enabled && syncSettings.binId && syncSettings.apiKey){
   pullStateFromSync();
   setInterval(pullStateFromSync, 45000);
 }
+
+/* Offline-ondersteuning: werkt alleen als sw.js naast dit bestand gehost wordt
+   (dus niet bij een lokaal geopend bestand — dat vereist geen actie, faalt gewoon stil). */
+if("serviceWorker" in navigator && location.protocol !== "file:"){
+  window.addEventListener("load", ()=>{
+    navigator.serviceWorker.register("sw.js").catch(err=>{
+      console.error("Service worker registratie mislukt (offline-ondersteuning werkt dan niet):", err);
+    });
+  });
+}
+})();
 </script>
 </body>
 </html>
