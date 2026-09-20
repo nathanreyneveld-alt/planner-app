@@ -1,11 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://api.jsonbin.io https://api.open-meteo.com https://geocoding-api.open-meteo.com https://api.bigdatacloud.net https://generativelanguage.googleapis.com;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; manifest-src data:; font-src 'self'; connect-src 'self' https://api.jsonbin.io https://api.open-meteo.com https://geocoding-api.open-meteo.com https://api.bigdatacloud.net https://generativelanguage.googleapis.com;">
 <title>Weekagenda</title>
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiV2Vla2FnZW5kYSIsInNob3J0X25hbWUiOiJXZWVrYWdlbmRhIiwiZGVzY3JpcHRpb24iOiJQZXJzb29ubGlqa2Ugd2Vla2FnZW5kYSBtZXQgQUktYXNzaXN0ZW50LCBzeW5jaHJvbmlzYXRpZSBlbiBvZmZsaW5lIGdlYnJ1aWsuIiwic3RhcnRfdXJsIjoiLiIsInNjb3BlIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmNWY1ZjciLCJ0aGVtZV9jb2xvciI6IiMwMDcxZTMiLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0LXByaW1hcnkiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQURBQ0FZQUFBQlMzR3dIQUFBRVRrbEVRVlI0bk8zZFRYYlRRQkNGMFRhSFpaQkZ3a0xJSW1FZllRQ2NKSTRqUzlaUFYrdmRPMlNReUZaOUtza0pjR25WZlAvMTB2c1EyTkh6MDZYM0lielY5MkFNTzYxMWplTDRiMnpvbVhKd0RNZDlNNFBQRWdlRnNQODNNZmlzc1hNSSszMXhnOCtXZGdwaCt5OXE4Tm5UeGlGODJmS0xHWDUydC9HTWJWT1R3YWVIRGJiQitnMWcrT2xsZzlsYkY0RGhwN2VWTS9oNEFJYWZLbGJNNG1NQkdINnFlWEFtbHdkZytLbnFnZGxjRm9EaHA3cUZNem8vQU1QUEtCYk02cndBREQram1UbXo5d013L0l4cXh1eHUrNnNRTUpqcEFGejlHZDJkR2Y0OEFNUFBXVXpNc2xzZ290ME93Tldmcy9sa3BtMEFvbjBNd05XZnM3b3gyellBMGQ0SDRPclAyVjNOdUExQXROY0FYUDFKOFdiV2JRQ2lDWUJvZndOdyswT2Fmek52QXhCTkFFUVRBTkVFUUxTTEIyQ1MyUUJFRXdEUkJFQTBBUkJOQUVRVEFORUVRTFN2dlErZ3A1ZWYzejc4MmVYSDd3NUhjcHpFMXp3bGRnUGNHb1NwUHorRHhOZDhUMlFBOTA3NEdRY2k4VFhQRVJmQTNCTjlwb0ZJZk0xelJRV3c5QVNmWVNBU1gvTVNVUUhBTlFFUVRRQkVFd0RSaHZvTE1Xa1BhQ01iNVlkclF3Umc4TWRWUFlUU0FSajg4NmdhUXRsbkFNTi9MbFhQWjlrQTRBZ2xBNmg2dFdDZGl1ZTFaQUJ3bEhJQlZMeEtzSjFxNTdkY0FIQWtBUkJOQUVRVEFORUVRRFFCRUUwQVJCTUEwUVJBTkFFUVRRQkVFd0RSQkVBMEFSQk5BRVFUQU5FRVFEUUJFRTBBUkJ2dS93aXIrZzhzOGFyYTMvdWRZZ01RVFFCRUV3RFJCRUEwQVJCTkFFUVRBTkVFUURRQkVFMEFSQk1BMFFSQU5BRVFUUUJFRXdEUkJFQTBBUkJOQUVRVEFORUVRRFFCRUUwQVJCTUEwUVJBTkFFUVRRQkVFd0RSQkVBMEFSQk5BRVFUQU5FRVFEUUJFRTBBUkJNQTBRUkFOQUVRVFFCRUV3RFJCRUEwQVJCTkFFUVRBTkVFUURRQkVFMEFSQk1BMFFSQU5BRVFUUUJFRXdEUkJFQTBBUkJOQUVRVEFORUVRRFFCRUUwQVJCTUEwUVJBTkFFUVRRQkVFd0RSQkVBMEFSQk5BRVFiTG9DWG45OTZId0lUUmpzL3d3WFEybmh2Y29vUno4dWxmZi8xMHZzZ3JvMzRSakxQNWNmdjNvZnd6cEFiQUxaU01vQnFWd20yVWZHOGxneWd0WnB2Rm8rcmVqN0xCZ0JIS1BrUWZNMUQ4YmlxWHZuL0cySURWSDhUdVcyRTgzWnByYlVSdHNCL3RrRjlJd3grYTYyMTU2ZkwxOTdIc05Rd2J5NURHT0lXQ1BZaUFLSUpnR2gvQTNoK3VuUStEampXdjVtM0FZZ21BS0s5QnVBMmlCUnZadDBHSU5yN0FHd0J6dTVxeG0wQW9uME13QmJnckc3TXRnMUF0TnNCMkFLY3pTY3piUU1RN2ZNQWJBSE9ZbUtXcHplQUNCamRuUmwyQzBTMCt3SFlBb3hxeHV6TzJ3QWlZRFF6WjNiK0xaQUlHTVdDV1YzMkRDQUNxbHM0bzhzZmdrVkFWUS9NNW1PZkFvbUFhaDZjeWNjL0JoVUJWYXlZeFhVL0J4QUJ2YTJjd2ZVL0NCTUJ2V3d3ZTlzTzcwRC94aWdEMi9DaXUrMnZRdGdHN0czakdkdHZZRzBEdHJUVHhYWC9LN1lRV0dQbnU0cmpibG1Fd0JJSDNVNGZmODh1QktZYy9Celo5NkZWRExUVzljT1RlcC9haU9MY2luMVMrQWN5N1BUdXJzOEJid0FBQUFCSlJVNUVya0pnZ2c9PSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmciLCJwdXJwb3NlIjoiYW55In0seyJzcmMiOiJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQWdBQUFBSUFDQVlBQUFEMGVOVDZBQUFOeWtsRVFWUjRuTzNjVVhiVE9oU0dVZWN1aGdHRGhJSEFJR0VldlE4bGtKUTBqUjNMT3RLLzkvTmRGMGVOZGI3SWFVOExOWDM5K2RMN0VnQjI4ZVBMcWZjbDhDOC9sRjRNZUlCWEFxRUxpMzRFd3g1Z0hWSFFuQVZ1d2NBSDJKY2cySjBGM1lPQkQzQXNRZkEwQzdpVm9ROVFneGpZeEtLdFllZ0QxQ1lHSG1haFBtTG9BNHhKRE54bGNkNWo4QVBNUVFqY1pGRXVHZm9BY3hNRGYxaUlaVEg0QWRJSWdmQUFNUGdCc2dXSFFPWUxOL2dCdUJRWUFsa3YyT0FINEo2Z0VNaDRvUVkvQUdzRWhNQi92UytnT2NNZmdMVUNac2U4aFJQd3d3UGdBSk9lQnN6M29neCtBRnFZTEFUbWVnUmcrQVBReW1RelpvNmFtZXlIQWtCeEU1d0dqSDhDWVBnRGNMUUpacy9ZQVREQkR3Q0FRUTArZzhZOHdoaDgwUUdZeklDUEJNWTdBVEQ4QWFobXdOazBWZ0FNdU1BQWhCaHNSbzF4WkRIWW9nSVFib0JIQXZWUEFBeC9BRVl6d095cUhRQURMQ0FBM0ZSOGh0VU5nT0lMQndBZktqekxhZ1pBNFFVRGdGV0t6clI2QVZCMG9RQmdzNEt6clZZQUZGd2dBTmhGc1JsWEp3Q0tMUXdBN0s3UXJLc1JBSVVXQkFDYUtqTHorZ2RBa1lVQWdNTVVtSDE5QTZEQUFnQkFGNTFuWUw4QU1Qd0JTTmR4RnZZSkFNTWZBRjUxbW9uSEI0RGhEd0RYT3N6R1l3UEE4QWVBMnc2ZWtjY0ZnT0VQQVBjZE9DdVBDUURESHdBZWM5RE03UDkzQUFDQXc3VVBBSi8rQVdDZEEyWm4yd0F3L0FGZ204WXp0RjBBR1A0QThKeUdzOVIzQUFBZ1VKc0E4T2tmQVBiUmFLYnVId0NHUHdEc3E4RnMzVGNBREg4QWFHUG5HZXM3QUFBUWFMOEE4T2tmQU5yYWNkYnVFd0NHUHdBY1k2ZVo2eEVBQUFSNlBnQjgrZ2VBWSswd2U1MEFBRUNnNXdMQXAzOEE2T1BKR2J3OUFBeC9BT2pyaVZuc0VRQUFCTm9XQUQ3OUEwQU5HMmV5RXdBQUNMUStBSHo2QjRCYU5zeG1Kd0FBRUdoZEFQajBEd0Exclp6UlRnQUFJTkRqQWVEVFB3RFV0bUpXT3dFQWdFQ1BCWUJQL3dBd2hnZG50aE1BQUFna0FBQWcwTWNCNFBnZkFNYnl3T3gyQWdBQWdlNEhnRS8vQURDbUQyYTRFd0FBQ0NRQUFDRFErd0hnK0I4QXhuWm5sanNCQUlCQUFnQUFBdDBPQU1mL0FEQ0hkMmE2RXdBQUNDUUFBQ0RRdndIZytCOEE1bkpqdGpzQkFJQkFBZ0FBQWdrQUFBaDBIUUNlL3dQQW5ON01lQ2NBQUJCSUFBQkFJQUVBQUlIK0JvRG4vd0F3dDR0Wjd3UUFBQUlKQUFBSUpBQUFJSkFBQUlCQXJ3SGdDNEFBa09IM3pIY0NBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFT2prYndBQVFCNG5BQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUFBUUNBQkFBQ0JQdlcrQUhqRXkvZlBILzQzcDIrL0RyZ1Mwbmt2TW92VDh2WG5TKytMZ1BjOHN0bStaZk9sQmU5RlppTUFLR25MWnZ1V3paYzllQzh5S3dGQUtYdHN0bS9aZk5uQ2U1SForUklnWmJUWWNGditmNW1YOXlJSkJBQWx0TjRZYmJ3OHludVJGQUtBN283YUVHMjhmTVI3a1NRQ2dLNk8zZ2h0dkx6SGU1RTBBZ0FBQWdrQXV1bjFDY2duTDk3eVhpU1JBQUNBUUFLQUxucC84dW45NzFOSDcvZEM3MytmWEFJQUFBSUpBQTVYNVJOUGxldWdueXJ2Z1NyWFFSWUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVE2TFI4L2ZuUyt5TFluNzh0RHV6cDlPMVg3MHRnWndKZ0VnWStjQ1JCTUQ0Qk1EaURIK2hKQ0l4TEFBeks0QWNxRVFMakVRQ0RNZmlCeW9UQU9Qd1d3RUFNZjZBNis5UTRCTUFnM0ZUQUtPeFhZeEFBQTNBekFhT3hiOVVuQUlwekV3R2pzbi9WSmdBS2MvTUFvN09QMVNVQWluTFRBTE93bjlVa0FBcHlzd0N6c2EvVkl3QUFJSkFBS0VZbEE3T3l2OVVpQUFBZ2tBQW9SQjBEczdQUDFTRUFBQ0NRQUNoQ0ZRTXA3SGMxQ0FBQUNDUUFBQ0NRQUFDQVFBS2dBTS9EZ0RUMnZmNEVBQUFFRWdBQUVFZ0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRUVnQUFFQWdBUUFBZ1FRQUFBUVNBQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUFBUUNBQkFBQ0JCQUFBQkJJQUFCQklBQUJBSUFFQUFJRUVBQUFFRWdBQUVFZ0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRU9oVDd3dWdyZE8zWDcwdkFSall5L2ZQdlMrQlJwd0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRUVnQUFFQWdBUUFBZ1FRQUFBUVNBQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUFBUUNBQkFBQ0JCQUFBQkJJQUFCQklBQUJBSUFFQUFJRUVBQUFFRWdBQUVFZ0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRUVnQUFFQWdBUUFBZ1FRQUFBUVNBQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUFBUUNBQkFBQ0JCQUFBQkJJQUFCQklBQUJBSUFFQUFJRUVBQUFFRWdBQUVFZ0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRUVnQUFFQWdBUUFBZ1FRQUFBUVNBQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUFBUUNBQkFBQ0JCQUFBQkJJQUFCQklBQUJBSUFFQUFJRUVBQUFFRWdBQUVFZ0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRUVnQUFFQWdBUUFBZ1FRQUFBUVNBQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUFBUUNBQkFBQ0JCQUFBQkJJQUFCQklBQUJBSUFFQUFJRUVBQUFFRWdBQUVFZ0FBRUFnQVFBQWdRUUFBQVFTQUFBUVNBQUFRQ0FCQUFDQkJBQUFCQklBQUJCSUFBQkFJQUVBQUlFRUFBQUVFZ0FBRUVnQUFFQWdBUUFBZ1FRQUFBUVNBQUFRU0FBQVFDQUJBQUNCQkFBQUJCSUFBQkJJQUFCQUlBRUFBSUVFQUFBRUVnQUFFRWdBQUVBZ0FRQUFnUVFBQUFRU0FBQVFTQUJNN3VYNzU5NlhBQXpLL2pFM0FRQUFnUVJBQUJVUHJHWGZtSjhBS09EMDdWZnpmOFBORER6cWlQM2lpSDJQK3o3MXZnQ09jNzZwM1hqQUxUNG9aQkVBZ2R6a0FIZ0VBQUNCQkVBUmp1V0JGUGE3R2dRQUFBUVNBSVdvWW1CMjlyazZCQUFBQkJJQUFCQklBQlRqZUF5WWxmMnRGZ0ZRa0pzRW1JMTlyUjRCQUFDQkJFQlJhaG1ZaGYyc0pnRlFtSnNHR0oxOXJDNEJVSnliQnhpVi9hczJBVEFBTnhFd0d2dFdmUUpnRUc0bVlCVDJxekVJZ0lHNHFZRHE3RlBqRUFDRGNYTUJWZG1meHZMZjh1UExxZmRGc0k2YkRLakd2alNZSDE5T24zcGZBOXVjYjdhWDc1ODdYd21Rek9BZmwwY0FnM1B6QWIzWWY4Ym1CR0FDbHplaEV3R2dKVU4vSGdKZ01oNE5BQzBZL1BNUkFKTjZlN01LQW1BTkEzOStBaUNFbXhtQVM3NEVDQUNCWGdQQTN3SUFnQXkvWjc0VEFBQUlKQUFBSUpBQUFJQkFBZ0FBQXYwTkFGOEVCSUM1WGN4Nkp3QUFFRWdBQUVBZ0FRQUFnYTREd1BjQUFHQk9iMmE4RXdBQUNDUUFBQ0NRQUFDQVFQOEdnTzhCQU1CY2JzeDJKd0FBRUVnQUFFQ2cyd0hnTVFBQXpPR2RtZTRFQUFBQ0NRQUFDUFIrQUhnTUFBQmp1elBMblFBQVFDQUJBQUNCN2dlQXh3QUFNS1lQWnJnVEFBQUk5SEVBT0FVQWdMRThNTHVkQUFCQUlBRUFBSUVlQ3dDUEFRQmdEQS9PYkNjQUFCRG84UUJ3Q2dBQXRhMlkxVTRBQUNEUXVnQndDZ0FBTmEyYzBVNEFBQ0RRK2dCd0NnQUF0V3lZelU0QUFDRFF0Z0J3Q2dBQU5XeWN5VTRBQUNEUTlnQndDZ0FBZlQweGk1ODdBUkFCQU5ESGt6UFlJd0FBQ1BSOEFEZ0ZBSUJqN1RCN25RQUFRS0I5QXNBcEFBQWNZNmVadTk4SmdBZ0FnTFoybkxVZUFRQkFvSDBEd0NrQUFMU3g4NHpkL3dSQUJBREF2aHJNMWphUEFFUUFBT3lqMFV6MUhRQUFDTlF1QUp3Q0FNQnpHczdTdGljQUlnQUF0bWs4UTlzL0FoQUJBTERPQWJQVGR3QUFJTkF4QWVBVUFBQWVjOURNUE80RVFBUUF3SDBIenNwakh3R0lBQUM0N2VBWmVmeDNBRVFBQUZ6ck1CdjdmQWxRQkFEQXEwNHpzZDl2QVlnQUFOSjFuSVY5ZncxUUJBQ1Fxdk1NN1A5M0FFUUFBR2tLekw3K0FiQXNKUllDQUE1UlpPYlZDSUJsS2JNZ0FOQk1vVmxYSndDV3BkVENBTUN1aXMyNFdnR3dMT1VXQ0FDZVZuQzIxUXVBWlNtNVVBQ3dTZEdaVmpNQWxxWHNnZ0hBd3dyUHNyb0JzQ3lsRnc0QTdpbyt3Mm9Id0xLVVgwQUErTWNBczZ2OEJWNzUrdk9sOXlVQXdMc0dHUHhuOVU4QUxnMjBzQUNFR1d4R2pSVUF5ekxjQWdNUVlNRFpOTndGWC9GSUFJQ2VCaHo4WitPZEFGd2FlT0VCR056Z00yanNBRmlXNFg4QUFBeG9ndGt6L0F1NDRwRUFBQzFOTVBqUHhqOEJ1RFRSRHdhQVlpYWJNVk85bUN0T0F3RFl3MlNELzJ6S0YzVkZDQUN3eGFTRC8yeXVSd0MzVFA0REJLQ0JnTmt4L1F1ODRqUUFnSHNDQnY5WnpBdTlJZ1FBdUJRMCtNL2lYdkFWSVFDUUxYRHduOFcrOEN0Q0FDQkw4T0EvaTErQUswSUFZRzRHL3g4VzRqMWlBR0FPaHY1TkZ1VWpRZ0JnVEFiL1hSWm5EVEVBVUp1aC96QUx0WlVZQUtqQjBOL0VvdTFCREFBY3k5Qi9tZ1ZzUVJBQTdNdkEzNTBGUFlJZ0FGakh3Ry9PQXZjaUNnQmVHZlpkV1BTcUJBSXdDd08rcFA4QlRpaG94N1phMGVFQUFBQUFTVVZPUks1Q1lJST0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIiwicHVycG9zZSI6ImFueSJ9XX0=">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAETklEQVR4nO3dTXbTQBCF0TaHZZBFwkLIImEfYQCcJI4jS9ZPV+vdO2SQyFZ9KskJcGnVfP/10vsQ2NHz06X3IbzV92AMO611jeL4b2zomXJwDMd9M4PPEgeFsP83MfissXMI+31xg8+Wdgph+y9q8NnTxiF82fKLGX52t/GMbVOTwaeHDbbB+g1g+Ollg9lbF4Dhp7eVM/h4AIafKlbM4mMBGH6qeXAmlwdg+KnqgdlcFoDhp7qFMzo/AMPPKBbM6rwADD+jmTmz9wMw/Ixqxuxu+6sQMJjpAFz9Gd2dGf48AMPPWUzMslsgot0OwNWfs/lkpm0Aon0MwNWfs7ox2zYA0d4H4OrP2V3NuA1AtNcAXP1J8WbWbQCiCYBofwNw+0OafzNvAxBNAEQTANEEQLSLB2CS2QBEEwDRBEA0ARBNAEQTANEEQLSvvQ+gp5ef3z782eXH7w5HcpzE1zwldgPcGoSpPz+DxNd8T2QA9074GQci8TXPERfA3BN9poFIfM1zRQWw9ASfYSASX/MSUQHANQEQTQBEEwDRhvoLMWkPaCMb5YdrQwRg8MdVPYTSARj886gaQtlnAMN/LlXPZ9kA4AglA6h6tWCdiue1ZABwlHIBVLxKsJ1q57dcAHAkARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBvu/wir+g8s8ara3/udYgMQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQbLoCXn996HwITRjs/wwXQ2nhvcooRz8ulff/10vsgro34RjLP5cfv3ofwzpAbALZSMoBqVwm2UfG8lgygtZpvFo+rej7LBgBHKPkQfM1D8biqXvn/G2IDVH8TuW2E83ZprbURtsB/tkF9Iwx+a62156fL197HsNQwby5DGOIWCPYiAKIJgGh/A3h+unQ+DjjWv5m3AYgmAKK9BuA2iBRvZt0GINr7AGwBzu5qxm0Aon0MwBbgrG7Mtg1AtNsB2AKczSczbQMQ7fMAbAHOYmKWpzeACBjdnRl2C0S0+wHYAoxqxuzO2wAiYDQzZ3b+LZAIGMWCWV32DCACqls4o8sfgkVAVQ/M5mOfAomAah6cycc/BhUBVayYxXU/BxABva2cwfU/CBMBvWwwe9sO70D/xigD2/Ciu+2vQtgG7G3jGdtvYG0DtrTTxXX/K7YQWGPnu4rjblmEwBIH3U4ff88uBKYc/BzZ96FVDLTW9cOTep/aiOLcin1S+Acy7PTurs8BbwAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAETklEQVR4nO3dTXbTQBCF0TaHZZBFwkLIImEfYQCcJI4jS9ZPV+vdO2SQyFZ9KskJcGnVfP/10vsQ2NHz06X3IbzV92AMO611jeL4b2zomXJwDMd9M4PPEgeFsP83MfissXMI+31xg8+Wdgph+y9q8NnTxiF82fKLGX52t/GMbVOTwaeHDbbB+g1g+Ollg9lbF4Dhp7eVM/h4AIafKlbM4mMBGH6qeXAmlwdg+KnqgdlcFoDhp7qFMzo/AMPPKBbM6rwADD+jmTmz9wMw/Ixqxuxu+6sQMJjpAFz9Gd2dGf48AMPPWUzMslsgot0OwNWfs/lkpm0Aon0MwNWfs7ox2zYA0d4H4OrP2V3NuA1AtNcAXP1J8WbWbQCiCYBofwNw+0OafzNvAxBNAEQTANEEQLSLB2CS2QBEEwDRBEA0ARBNAEQTANEEQLSvvQ+gp5ef3z782eXH7w5HcpzE1zwldgPcGoSpPz+DxNd8T2QA9074GQci8TXPERfA3BN9poFIfM1zRQWw9ASfYSASX/MSUQHANQEQTQBEEwDRhvoLMWkPaCMb5YdrQwRg8MdVPYTSARj886gaQtlnAMN/LlXPZ9kA4AglA6h6tWCdiue1ZABwlHIBVLxKsJ1q57dcAHAkARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBvu/wir+g8s8ara3/udYgMQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQbLoCXn996HwITRjs/wwXQ2nhvcooRz8ulff/10vsgro34RjLP5cfv3ofwzpAbALZSMoBqVwm2UfG8lgygtZpvFo+rej7LBgBHKPkQfM1D8biqXvn/G2IDVH8TuW2E83ZprbURtsB/tkF9Iwx+a62156fL197HsNQwby5DGOIWCPYiAKIJgGh/A3h+unQ+DjjWv5m3AYgmAKK9BuA2iBRvZt0GINr7AGwBzu5qxm0Aon0MwBbgrG7Mtg1AtNsB2AKczSczbQMQ7fMAbAHOYmKWpzeACBjdnRl2C0S0+wHYAoxqxuzO2wAiYDQzZ3b+LZAIGMWCWV32DCACqls4o8sfgkVAVQ/M5mOfAomAah6cycc/BhUBVayYxXU/BxABva2cwfU/CBMBvWwwe9sO70D/xigD2/Ciu+2vQtgG7G3jGdtvYG0DtrTTxXX/K7YQWGPnu4rjblmEwBIH3U4ff88uBKYc/BzZ96FVDLTW9cOTep/aiOLcin1S+Acy7PTurs8BbwAAAABJRU5ErkJggg==">
+<meta name="theme-color" content="#0071e3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Weekagenda">
 <style>
   :root{
     --bg:#f5f5f7;
@@ -51,14 +57,121 @@
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html, body{height:100%;}
   body{
     font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
     background:var(--bg);
     color:var(--text);
     -webkit-font-smoothing:antialiased;
-    padding:40px 24px 80px;
+    overflow:hidden;
   }
-  .container{max-width:1200px; margin:0 auto;}
+
+  /* ================= App-schil: vaste zijbalk + vaste hoofdlayout =================
+     Net als bij Google Agenda: alleen het rooster zelf scrolt, de rest (header, legende,
+     zijbalk) blijft op zijn plaats staan — geen scrollende hele pagina meer. */
+  .app-shell{display:flex; align-items:stretch; height:100vh; width:100%;}
+  .main-area{
+    flex:1; min-width:0; display:flex; flex-direction:column;
+    height:100vh; padding:32px 24px 16px; overflow:hidden;
+  }
+  .container{max-width:1200px; margin:0 auto; width:100%; display:flex; flex-direction:column; flex:1; min-height:0;}
+  header, #locationForm, .legend-bar{flex-shrink:0;}
+  .table-card, .mobile-day-view, .month-view, .list-view{flex:1; min-height:0; display:flex; flex-direction:column;}
+  .mobile-day-card{flex:1; min-height:0; display:flex; flex-direction:column;}
+  footer{flex-shrink:0;}
+
+  /* ================= Zijbalk ================= */
+  .sidebar{
+    width:300px; flex-shrink:0; background:var(--surface); border-right:1px solid var(--border);
+    display:flex; flex-direction:column; height:100vh; transition:width 0.2s ease;
+  }
+  .app-shell.sidebar-collapsed .sidebar{width:52px;}
+  .app-shell.sidebar-collapsed .sidebar-title, .app-shell.sidebar-collapsed .sidebar-body{display:none;}
+  .sidebar-header{display:flex; align-items:center; gap:10px; padding:16px 14px; flex-shrink:0;}
+  .sidebar-toggle-btn{
+    width:32px; height:32px; border-radius:8px; border:none; background:none; color:var(--text);
+    cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.15s ease;
+  }
+  .sidebar-toggle-btn:hover{background:var(--bg);}
+  .sidebar-title{font-size:14px; font-weight:600; white-space:nowrap;}
+  .sidebar-body{flex:1; min-height:0; overflow-y:auto;}
+  .mobile-sidebar-fab{
+    display:none; width:38px; height:38px; border-radius:10px; border:1px solid var(--border);
+    background:var(--surface); color:var(--text); box-shadow:var(--shadow); cursor:pointer;
+    align-items:center; justify-content:center;
+  }
+  .sidebar-backdrop{display:none;}
+
+  .sidebar-section{border-bottom:1px solid var(--border);}
+  .sidebar-section-header{
+    width:100%; display:flex; align-items:center; gap:10px; padding:13px 16px; background:none; border:none;
+    cursor:pointer; font-family:inherit; font-size:13px; font-weight:600; color:var(--text); text-align:left;
+  }
+  .sidebar-section-header:hover{background:var(--bg);}
+  .ssh-icon{display:flex; align-items:center; justify-content:center; width:18px; height:18px; color:var(--text-secondary); flex-shrink:0;}
+  .ssh-label{flex:1;}
+  .ssh-chevron{display:flex; color:var(--text-secondary); transition:transform 0.15s ease; flex-shrink:0;}
+  .sidebar-section.open .ssh-chevron{transform:rotate(90deg);}
+  .sidebar-section-content{display:none; padding:0 16px 18px;}
+  .sidebar-section.open .sidebar-section-content{display:block;}
+  .sidebar-section-note{font-size:11px; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;}
+  .sidebar-section-content .note-card{background:none; border:none; box-shadow:none; padding:0; margin:0;}
+  .sidebar-section-content .modal-actions{flex-wrap:wrap;}
+
+  .task-add-form{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
+  .task-add-form #taskAddInput{flex:1 1 140px; min-width:0;}
+  .task-add-form #taskAddDate{flex:0 0 auto; width:132px; font-size:12px;}
+  .task-add-form input{
+    padding:7px 9px; border-radius:8px; border:1px solid var(--border); background:var(--surface);
+    color:var(--text); font-family:inherit; font-size:12px;
+  }
+  .task-add-btn{
+    flex:0 0 auto; width:30px; height:30px; border-radius:8px; border:none; background:var(--accent);
+    color:#fff; font-size:17px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .task-add-btn:hover{opacity:0.9;}
+  .task-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px;}
+  .task-item{
+    display:flex; align-items:flex-start; gap:8px; padding:7px 4px; border-radius:7px;
+  }
+  .task-item:hover{background:var(--bg);}
+  .task-item-checkbox{
+    flex:0 0 auto; width:17px; height:17px; margin-top:1px; cursor:pointer; accent-color:var(--accent);
+  }
+  .task-item-body{flex:1; min-width:0; cursor:pointer;}
+  .task-item-title{font-size:12.5px; color:var(--text); line-height:1.4; word-break:break-word;}
+  .task-item-due{font-size:10.5px; color:var(--text-secondary); margin-top:1px;}
+  .task-item-due.task-overdue{color:#d64545;}
+  .task-item.task-done .task-item-title{text-decoration:line-through; color:var(--text-secondary);}
+  .task-item.task-done .task-item-due{display:none;}
+  .task-item-delete{
+    flex:0 0 auto; background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:13px;
+    opacity:0; padding:2px 4px; line-height:1; align-self:center;
+  }
+  .task-item:hover .task-item-delete{opacity:0.7;}
+  .task-item-delete:hover{opacity:1 !important; color:#d64545;}
+  .task-list-empty{font-size:11px; color:var(--text-secondary); margin:4px 0 0; display:none;}
+  .task-list-empty.visible{display:block;}
+  .sidebar-badge{
+    display:inline-flex; align-items:center; justify-content:center; min-width:16px; height:16px; padding:0 4px;
+    border-radius:8px; background:var(--accent); color:#fff; font-size:10px; font-weight:700; margin-left:4px;
+  }
+
+  @media (max-width:700px){
+    .sidebar{
+      position:fixed; top:0; left:0; z-index:210; width:280px; height:100vh;
+      transform:translateX(-100%); transition:transform 0.2s ease; box-shadow:0 0 24px rgba(0,0,0,0.3);
+    }
+    .app-shell:not(.sidebar-collapsed) .sidebar{transform:translateX(0);}
+    .app-shell.sidebar-collapsed .sidebar{width:280px;}
+    .app-shell.sidebar-collapsed .sidebar-title, .app-shell.sidebar-collapsed .sidebar-body{display:block;}
+    .app-shell.sidebar-collapsed .sidebar-body{display:block; overflow-y:auto;}
+    .app-shell:not(.sidebar-collapsed) .sidebar-backdrop{
+      display:block; position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:205;
+    }
+    .app-shell.sidebar-collapsed .mobile-sidebar-fab{display:flex;}
+    .main-area{padding:20px 12px 12px;}
+  }
 
   header{
     display:flex;
@@ -100,6 +213,38 @@
     cursor:pointer; padding:6px 10px; border-radius:999px; transition:background 0.15s ease, color 0.15s ease;
   }
   .pill-text-btn:hover{background:var(--bg); color:var(--text);}
+
+  .view-toggle{display:flex; align-items:center; background:var(--bg); border-radius:999px; padding:3px; gap:2px;}
+  .view-toggle-btn{
+    border:none; background:none; color:var(--text-secondary); font-size:12px; font-weight:600;
+    padding:6px 12px; border-radius:999px; cursor:pointer; transition:background 0.15s ease, color 0.15s ease;
+  }
+  .view-toggle-btn.active{background:var(--surface); color:var(--text); box-shadow:var(--shadow);}
+  .view-toggle-btn:not(.active):hover{color:var(--text);}
+
+  .quick-add-wrap{position:relative;}
+  .quick-add-toggle-btn.active{background:var(--bg);}
+  .quick-add-bar{
+    display:none; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border);
+    border-radius:12px; padding:9px 12px; box-shadow:var(--shadow);
+    position:absolute; top:calc(100% + 8px); right:0; z-index:60; width:340px; max-width:min(88vw, 340px);
+  }
+  .quick-add-wrap.open .quick-add-bar{display:flex;}
+  .quick-add-bar input{
+    flex:1; min-width:0; border:1px solid var(--border); outline:none; background:var(--bg); border-radius:8px;
+    padding:7px 9px; font-family:inherit; font-size:13px; color:var(--text);
+  }
+  .quick-add-bar input:focus{border-color:var(--accent);}
+  .quick-add-bar input::placeholder{color:var(--text-secondary);}
+  .quick-add-submit{
+    flex-shrink:0; padding:7px 14px; border-radius:8px; border:none;
+    background:var(--btn-primary-bg); color:var(--btn-primary-text);
+    font-size:13px; font-weight:500; cursor:pointer; transition:opacity 0.15s ease; font-family:inherit;
+  }
+  .quick-add-submit:hover{opacity:0.85;}
+  @media (max-width:700px){
+    .quick-add-bar{position:fixed; top:auto; bottom:16px; left:16px; right:16px; width:auto; max-width:none;}
+  }
 
   .theme-toggle-btn{
     width:30px; height:30px; border-radius:50%; margin-left:2px;
@@ -144,18 +289,89 @@
   .legend-row{display:flex; flex-wrap:wrap; gap:6px;}
   .legend-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
 
+  .month-view{
+    display:none; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow:hidden; margin-bottom:16px; touch-action:pan-y;
+  }
+  body.view-month .month-view{display:flex;}
+  body.view-month .table-card, body.view-month .mobile-day-view, body.view-month .list-view{display:none !important;}
+  .list-view{
+    display:none; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow:hidden; margin-bottom:16px;
+  }
+  body.view-list .list-view{display:flex;}
+  body.view-list .table-card, body.view-list .mobile-day-view, body.view-list .month-view{display:none !important;}
+  .list-scroll{flex:1; min-height:0; overflow:auto; padding:4px 0;}
+  .list-date-heading{
+    position:sticky; top:0; background:var(--bg); padding:9px 16px; font-size:12px; font-weight:700;
+    color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.03em; border-bottom:1px solid var(--border);
+  }
+  .list-date-heading.today{color:var(--accent);}
+  .list-item{
+    width:100%; display:flex; align-items:center; gap:10px; padding:11px 16px; border:none; background:none;
+    border-bottom:1px solid var(--border); cursor:pointer; font-family:inherit; text-align:left; color:var(--text);
+  }
+  .list-item:hover{background:var(--bg);}
+  .list-item-dot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+  .list-item-time{font-size:13px; font-weight:600; color:var(--text-secondary); width:44px; flex-shrink:0;}
+  .list-item-title{flex:1; min-width:0; font-size:14px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .list-item-meta{font-size:12px; color:var(--text-secondary); flex-shrink:0; white-space:nowrap; margin-left:8px;}
+  .list-item-vacation{background:var(--vacation-bg);}
+  .list-item-vacation .list-item-time{color:var(--vacation-text);}
+  .list-empty{padding:28px 16px; color:var(--text-secondary); font-size:13px; text-align:center;}
+  .month-weekday-row{display:grid; grid-template-columns:repeat(7, 1fr); background:var(--bg); border-bottom:1px solid var(--border); flex-shrink:0;}
+  .month-weekday-row div{padding:8px 4px; text-align:center; font-size:11px; font-weight:600; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.04em;}
+  .month-grid{display:grid; grid-template-columns:repeat(7, 1fr); grid-auto-rows:minmax(72px, 1fr); flex:1; min-height:0; overflow:auto;}
+  .month-cell{
+    position:relative; border-left:1px solid var(--border); border-bottom:1px solid var(--border);
+    padding:5px 5px 6px; cursor:pointer; background:var(--surface); transition:background 0.15s ease;
+    display:flex; flex-direction:column; gap:3px; min-width:0;
+  }
+  .month-cell:nth-child(7n+1){border-left:none;}
+  .month-cell:hover{background:var(--bg);}
+  .month-cell.outside{color:var(--text-secondary); opacity:0.45;}
+  .month-cell.today .month-cell-num{
+    background:var(--accent); color:#fff; border-radius:50%;
+  }
+  .month-cell-num{
+    width:22px; height:22px; display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:600; flex-shrink:0;
+  }
+  .month-cell-dots{display:flex; flex-wrap:wrap; gap:3px; align-items:center;}
+  .month-dot{width:6px; height:6px; border-radius:50%; flex-shrink:0;}
+  .month-cell-more{font-size:10px; color:var(--text-secondary);}
+  .month-cell-holiday{font-size:9px; color:var(--holiday-official-text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .month-cell-vacation{font-size:9px; color:var(--vacation-text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  @media (max-width:700px){
+    .month-grid{grid-auto-rows:minmax(52px, 1fr);}
+    .month-cell{padding:3px 3px 4px;}
+    .month-cell-holiday, .month-cell-vacation{display:none;}
+  }
+
   .table-card{
     background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
-    box-shadow:var(--shadow); overflow:hidden; margin-bottom:28px;
-    display:flex; align-items:stretch;
+    box-shadow:var(--shadow); overflow:hidden; margin-bottom:16px;
+    align-items:stretch;
   }
-  .table-card-main{flex:1; min-width:0; display:flex; flex-direction:column;}
+  .table-card-main{flex:1; min-width:0; min-height:0; display:flex; flex-direction:column;}
   .side-nav-btn{
     flex-shrink:0; width:40px; border:none; background:var(--bg); color:var(--text);
     font-size:20px; cursor:pointer; transition:background 0.15s ease;
   }
   .side-nav-btn:hover{background:var(--border);}
-  .table-scroll{overflow-x:auto;}
+  .scroll-area-row{display:flex; align-items:stretch; flex:1; min-height:0;}
+  .table-scroll{overflow:auto; flex:1; min-width:0; min-height:0; overscroll-behavior:contain;}
+  .table-scroll, .mobile-day-scroll{scrollbar-width:none; -ms-overflow-style:none;}
+  .table-scroll::-webkit-scrollbar, .mobile-day-scroll::-webkit-scrollbar{display:none; width:0; height:0;}
+  .scroll-track{
+    width:6px; flex-shrink:0; position:relative; margin:10px 8px 10px 0; border-radius:3px; background:transparent;
+  }
+  .scroll-track.hidden{display:none;}
+  .scroll-thumb{
+    position:absolute; left:0; right:0; top:0; background:var(--border); border-radius:3px;
+    cursor:grab; touch-action:none; transition:background 0.15s ease;
+  }
+  .scroll-thumb:hover, .scroll-thumb.dragging{background:var(--text-secondary);}
 
   .week-grid{display:grid; grid-template-columns:56px repeat(7, minmax(128px, 1fr)); min-width:960px;}
   .corner{background:var(--bg); border-bottom:1px solid var(--border);}
@@ -414,7 +630,7 @@
   .tool-links a:hover{color:var(--accent); text-decoration:underline;}
 
   .mobile-day-view{display:none;}
-  .mobile-day-strip{display:flex; gap:4px; margin-bottom:12px;}
+  .mobile-day-strip{display:flex; gap:4px; margin-bottom:12px; flex-shrink:0;}
   .mobile-day-tab{
     flex:1; min-width:0; padding:8px 2px; border-radius:10px; border:1px solid var(--border);
     background:var(--surface); text-align:center; cursor:pointer; font-family:inherit;
@@ -429,9 +645,9 @@
 
   .mobile-day-card{
     background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
-    box-shadow:var(--shadow); overflow:hidden; margin-bottom:20px;
+    box-shadow:var(--shadow); overflow:hidden; margin-bottom:12px;
   }
-  .mobile-day-header{padding:14px 16px; border-bottom:1px solid var(--border); background:var(--bg);}
+  .mobile-day-header{padding:14px 16px; border-bottom:1px solid var(--border); background:var(--bg); flex-shrink:0;}
   .mdh-row{display:flex; align-items:center; justify-content:space-between; gap:8px;}
   .mdh-date{font-size:15px; font-weight:600;}
   .mdh-weather{font-size:12px; color:var(--text-secondary); margin-top:2px;}
@@ -440,7 +656,7 @@
     background:none; color:var(--accent); font-size:12px; font-weight:600; cursor:pointer; font-family:inherit;
   }
   .mobile-today-btn:hover{background:var(--accent-light);}
-  .mobile-day-scroll{overflow-y:auto; max-height:70vh; position:relative;}
+  .mobile-day-scroll{overflow:auto; flex:1; min-width:0; min-height:0; position:relative; overscroll-behavior:contain;}
   .mobile-day-grid{position:relative; display:grid; grid-template-columns:52px 1fr;}
   .mobile-day-grid .time-axis{border-right:1px solid var(--border);}
   .mobile-day-grid .day-col{touch-action:pan-y;}
@@ -453,16 +669,29 @@
   .week-slide{ animation: weekSlideIn 0.22s ease; }
 
   @media print{
-    body{background:#fff; padding:0;}
+    html, body{background:#fff; padding:0; margin:0; overflow:visible !important; height:auto !important; width:auto !important;}
+    .app-shell, .main-area, .container{
+      display:block !important; height:auto !important; overflow:visible !important; padding:0 !important; max-width:none !important;
+    }
+    .sidebar, .sidebar-backdrop, .mobile-sidebar-fab,
     .header-actions, .legend-bar, .side-nav-btn, .note-card, .backup-strip, .mobile-day-view,
-    .greeting-line, .modal-overlay, .snackbar, .add-day-btn, .grid-top-bar{ display:none !important; }
-    .table-card{box-shadow:none; border:1px solid #ccc;}
-    .table-scroll{overflow:visible;}
-    .week-grid{min-width:0;}
+    .greeting-line, .modal-overlay, .snackbar, .add-day-btn, .grid-top-bar, .scroll-track,
+    .quick-add-wrap, footer, .location-form{ display:none !important; }
+    header{display:block !important;}
+    .table-card, .month-view, .list-view{
+      display:block !important; flex:none !important; height:auto !important; min-height:0 !important;
+      overflow:visible !important; box-shadow:none !important; border:1px solid #ccc !important; margin-bottom:0 !important;
+    }
+    .table-card-main{display:block !important; height:auto !important; overflow:visible !important;}
+    .scroll-area-row{display:block !important; height:auto !important;}
+    .table-scroll, .list-scroll{
+      overflow:visible !important; max-height:none !important; height:auto !important; flex:none !important; display:block !important;
+    }
+    .month-grid{overflow:visible !important; max-height:none !important; height:auto !important; flex:none !important;}
+    .week-grid{min-width:0; width:100%;}
     .event-pill{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
   @media (max-width: 700px){
-    body{padding:20px 12px 60px;}
     header{flex-direction:column; align-items:flex-start;}
     .header-right{width:100%; align-items:flex-start;}
     .header-actions{width:100%; justify-content:space-between;}
@@ -470,13 +699,148 @@
     .modal-row{grid-template-columns:1fr;}
     .modal-overlay{padding:10px;}
     .modal-field input, .modal-field select, .modal-field textarea{padding:12px; font-size:16px;}
-    .table-card{display:none;}
-    .mobile-day-view{display:block;}
+    body.view-week .table-card{display:none;}
+    body.view-week .mobile-day-view{display:flex;}
   }
 </style>
 </head>
 <body>
-<div class="container">
+<div class="app-shell" id="appShell">
+  <button type="button" id="mobileSidebarFab" class="mobile-sidebar-fab" title="Menu openen" aria-label="Menu openen"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button type="button" id="sidebarToggleBtn" class="sidebar-toggle-btn" title="Zijbalk in-/uitklappen" aria-label="Zijbalk in-/uitklappen" aria-expanded="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+      <span class="sidebar-title">Menu</span>
+    </div>
+    <div class="sidebar-body">
+
+      <div class="sidebar-section" id="sidebarSectionTasks">
+        <button type="button" class="sidebar-section-header" data-section="tasks" aria-expanded="false">
+          <span class="ssh-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
+          <span class="ssh-label">Taken<span class="sidebar-badge" id="taskCountBadge" style="display:none;">0</span></span>
+          <span class="ssh-chevron"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+        </button>
+        <div class="sidebar-section-content">
+          <form class="task-add-form" id="taskAddForm">
+            <input type="text" id="taskAddInput" placeholder="Nieuwe taak…" autocomplete="off">
+            <input type="date" id="taskAddDate" title="Vervaldatum (optioneel)">
+            <button type="submit" class="task-add-btn" title="Taak toevoegen" aria-label="Taak toevoegen">+</button>
+          </form>
+          <ul class="task-list" id="taskList"></ul>
+          <p class="task-list-empty" id="taskListEmpty">Geen taken. Voeg er hierboven een toe.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-section" id="sidebarSectionBackup">
+        <button type="button" class="sidebar-section-header" data-section="backup" aria-expanded="false">
+          <span class="ssh-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></span>
+          <span class="ssh-label">Back-up</span>
+          <span class="ssh-chevron"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+        </button>
+        <div class="sidebar-section-content">
+          <p class="sidebar-section-note" title="Exporteer of importeer je agenda als JSON-bestand. Je API-sleutels zitten nooit in deze export. Feestdagen worden altijd automatisch berekend.">Exporteer of importeer je agenda als JSON-bestand. Je API-sleutels zitten nooit in deze export.</p>
+          <div class="backup-actions">
+            <button id="exportBtn">⬇️ Exporteren (JSON)</button>
+            <button id="importBtn">⬆️ Importeren (JSON)</button>
+            <input type="file" id="importFile" accept="application/json" style="display:none;">
+          </div>
+          <p class="sidebar-section-note" style="margin-top:14px;">Of wissel afspraken uit met andere agenda's (Google, Outlook, Apple) via het standaard .ics-formaat. Geïmporteerde afspraken krijgen de categorie "Overig".</p>
+          <div class="backup-actions">
+            <button id="exportIcsBtn">📅 Exporteren (.ics)</button>
+            <button id="importIcsBtn">📥 Importeren (.ics)</button>
+            <input type="file" id="importIcsFile" accept=".ics,text/calendar" style="display:none;">
+          </div>
+          <div class="backup-actions" style="margin-top:8px;">
+            <button id="printPdfBtn">🖨️ Downloaden als PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section" id="sidebarSectionSync">
+        <button type="button" class="sidebar-section-header" data-section="sync" aria-expanded="false">
+          <span class="ssh-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></span>
+          <span class="ssh-label">Synchronisatie</span>
+          <span class="ssh-chevron"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+        </button>
+        <div class="sidebar-section-content">
+          <p class="modal-note">
+            Dit koppelt je agenda aan een gratis online opslagplek (jsonbin.io), zodat meerdere apparaten dezelfde agenda kunnen bijhouden.
+            Je hebt hiervoor een gratis account nodig op jsonbin.io — maak er een aan, ga naar "API Keys" in je dashboard en kopieer je Master Key hieronder.
+            De sleutel wordt alleen lokaal in je browser bewaard (los van je agenda-back-up) en rechtstreeks naar jsonbin.io verstuurd.
+            Bij gelijktijdige wijzigingen op twee apparaten wint simpelweg de laatst opgeslagen versie; er wordt niets samengevoegd.
+          </p>
+          <div class="ai-status-line" id="syncStatusLine">Synchronisatie is uitgeschakeld.</div>
+          <div class="modal-field">
+            <label>API-sleutel (Master Key van jsonbin.io)</label>
+            <input type="password" id="syncApiKeyInput" placeholder="$2a$10$…">
+          </div>
+          <div class="modal-field">
+            <label>Bin-ID</label>
+            <input type="text" id="syncIdInput" placeholder="Nog niet ingesteld">
+          </div>
+          <div class="modal-actions">
+            <button class="modal-btn-secondary" id="syncCreateBtn">Nieuwe sync aanmaken</button>
+            <button class="modal-btn-secondary" id="syncConnectBtn">Koppelen met dit ID</button>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-btn-danger" id="syncDisableBtn">Loskoppelen</button>
+            <div style="flex:1;"></div>
+            <button class="modal-btn-secondary" id="syncNowBtn">Nu synchroniseren</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section open" id="sidebarSectionAi">
+        <button type="button" class="sidebar-section-header" data-section="ai" aria-expanded="true">
+          <span class="ssh-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l1.8 4.8L19 8.5l-4.8 1.8L12 15l-1.8-4.7L5 8.5l5.2-1.7z"></path><path d="M19 15l0.9 2.4 2.4 0.9-2.4 0.9-0.9 2.4-0.9-2.4-2.4-0.9 2.4-0.9z"></path></svg></span>
+          <span class="ssh-label">AI-assistent</span>
+          <span class="ssh-chevron"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+        </button>
+        <div class="sidebar-section-content">
+          <div class="note-card">
+            <div class="ai-header-row">
+              <p class="note-sub">Typ, spreek of stuur — met eigen API-sleutel — een screenshot. Voor afspraken én vakanties.</p>
+              <button id="aiSettingsBtn" class="ai-settings-btn">Instellingen</button>
+            </div>
+            <div class="ai-status-line" id="aiStatusLine">Offline tekstherkenning actief — geen API-sleutel ingesteld.</div>
+
+            <div class="ai-input-area">
+              <textarea id="aiInput" placeholder=""></textarea>
+              <div class="ai-image-preview" id="aiImagePreview">
+                <img id="aiImagePreviewThumb" alt="">
+                <span>Screenshot toegevoegd</span>
+                <button id="aiImageRemoveBtn">✕ verwijderen</button>
+              </div>
+              <div class="ai-toolbar">
+                <button id="aiMicBtn" class="ai-icon-btn" title="Spreek in">🎤</button>
+                <button id="aiImageBtn" class="ai-icon-btn" title="Screenshot toevoegen — rooster, boeking, ticket… (vereist API-sleutel)" disabled>📷</button>
+                <input type="file" id="aiImageInput" accept="image/*" style="display:none;">
+                <button id="aiSubmitBtn" class="ai-submit-btn">Verwerken</button>
+              </div>
+            </div>
+
+            <div class="ai-preview" id="aiPreview">
+              <div class="ai-preview-header">
+                <h3>Voorstel — vink aan wat je wilt toevoegen</h3>
+                <button id="aiToggleAllBtn">Alles (de)selecteren</button>
+              </div>
+              <div class="ai-preview-list" id="aiPreviewList"></div>
+              <div class="ai-preview-actions">
+                <button class="commit-btn" id="aiCommitBtn">Toevoegen aan agenda</button>
+                <button class="discard-btn" id="aiDiscardBtn">Annuleren</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <div class="main-area">
+  <div class="container">
 
   <header>
     <div class="title-block">
@@ -486,12 +850,16 @@
     <div class="header-right">
       <div class="header-actions">
         <div class="week-nav-pill">
-          <button id="prevWeek" class="nav-arrow" aria-label="Vorige week">‹</button>
+          <div class="view-toggle" id="viewToggle" role="group" aria-label="Weergave">
+            <button type="button" id="viewToggleWeek" class="view-toggle-btn" aria-pressed="true">Week</button>
+            <button type="button" id="viewToggleMonth" class="view-toggle-btn" aria-pressed="false">Maand</button>
+            <button type="button" id="viewToggleList" class="view-toggle-btn" aria-pressed="false">Lijst</button>
+          </div>
+          <div class="pill-divider"></div>
           <div class="week-label-wrap">
             <div class="week-label" id="weekLabel" title="Klik om naar een datum te springen">–</div>
             <input type="date" id="weekDateInput" class="week-date-input" style="display:none;">
           </div>
-          <button id="nextWeek" class="nav-arrow" aria-label="Volgende week">›</button>
           <div class="pill-divider"></div>
           <button id="todayBtn" class="pill-text-btn">Vandaag</button>
           <button id="themeToggleBtn" class="theme-toggle-btn" title="Donkere modus" aria-label="Donkere modus"></button>
@@ -511,23 +879,30 @@
   <div class="legend-bar">
     <div class="legend-row" id="legendRow"></div>
     <div class="icon-btn-group">
+      <div class="quick-add-wrap" id="quickAddWrap">
+        <button type="button" id="quickAddToggleBtn" class="icon-btn" title="Snel een afspraak toevoegen" aria-label="Snel een afspraak toevoegen" aria-expanded="false"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+        <form class="quick-add-bar" id="quickAddBar">
+          <input type="text" id="quickAddInput" placeholder="Snel toevoegen — bijv. &quot;Lunch met Sanne morgen 12:30&quot;" autocomplete="off">
+          <button type="submit" id="quickAddSubmit" class="quick-add-submit">Toevoegen</button>
+        </form>
+      </div>
       <button id="searchBtn" class="icon-btn" title="Zoeken in agenda" aria-label="Zoeken in agenda"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
       <button id="vacationBtn" class="icon-btn" title="Vakantie plannen" aria-label="Vakantie plannen"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="3" y1="12" x2="21" y2="12"></line></svg></button>
-      <button id="syncBtn" class="icon-btn" title="Synchronisatie tussen apparaten" aria-label="Synchronisatie tussen apparaten"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></button>
     </div>
   </div>
 
   <div class="table-card">
-    <button id="prevWeekSide" class="side-nav-btn" aria-label="Vorige week">‹</button>
     <div class="table-card-main">
       <div class="grid-top-bar">
         <div class="week-summary" id="weekSummary"></div>
       </div>
-      <div class="table-scroll">
-        <div class="week-grid" id="weekGrid"></div>
+      <div class="scroll-area-row">
+        <div class="table-scroll" id="tableScroll">
+          <div class="week-grid" id="weekGrid"></div>
+        </div>
+        <div class="scroll-track" id="weekScrollTrack"><div class="scroll-thumb"></div></div>
       </div>
     </div>
-    <button id="nextWeekSide" class="side-nav-btn" aria-label="Volgende week">›</button>
   </div>
 
   <!-- Alleen zichtbaar op kleine schermen (zie media query) — de desktop-grid hierboven
@@ -536,62 +911,29 @@
     <div class="mobile-day-strip" id="mobileDayStrip"></div>
     <div class="mobile-day-card">
       <div class="mobile-day-header" id="mobileDayHeader"></div>
-      <div class="mobile-day-scroll">
-        <div class="mobile-day-grid" id="mobileDayGrid"></div>
+      <div class="scroll-area-row">
+        <div class="mobile-day-scroll" id="mobileDayScroll">
+          <div class="mobile-day-grid" id="mobileDayGrid"></div>
+        </div>
+        <div class="scroll-track" id="mobileScrollTrack"><div class="scroll-thumb"></div></div>
       </div>
     </div>
   </div>
 
-  <div class="note-card">
-    <div class="ai-header-row">
-      <div>
-        <h2>AI-assistent</h2>
-        <p class="note-sub">Typ, spreek of stuur — met eigen API-sleutel — een screenshot. Voor afspraken én vakanties.</p>
-      </div>
-      <button id="aiSettingsBtn" class="ai-settings-btn">Instellingen</button>
-    </div>
-    <div class="ai-status-line" id="aiStatusLine">Offline tekstherkenning actief — geen API-sleutel ingesteld.</div>
-
-    <div class="ai-input-area">
-      <textarea id="aiInput" placeholder=""></textarea>
-      <div class="ai-image-preview" id="aiImagePreview">
-        <img id="aiImagePreviewThumb" alt="">
-        <span>Screenshot toegevoegd</span>
-        <button id="aiImageRemoveBtn">✕ verwijderen</button>
-      </div>
-      <div class="ai-toolbar">
-        <button id="aiMicBtn" class="ai-icon-btn" title="Spreek in">🎤</button>
-        <button id="aiImageBtn" class="ai-icon-btn" title="Screenshot toevoegen — rooster, boeking, ticket… (vereist API-sleutel)" disabled>📷</button>
-        <input type="file" id="aiImageInput" accept="image/*" style="display:none;">
-        <button id="aiSubmitBtn" class="ai-submit-btn">Verwerken</button>
-      </div>
-    </div>
-
-    <div class="ai-preview" id="aiPreview">
-      <div class="ai-preview-header">
-        <h3>Voorstel — vink aan wat je wilt toevoegen</h3>
-        <button id="aiToggleAllBtn">Alles (de)selecteren</button>
-      </div>
-      <div class="ai-preview-list" id="aiPreviewList"></div>
-      <div class="ai-preview-actions">
-        <button class="commit-btn" id="aiCommitBtn">Toevoegen aan agenda</button>
-        <button class="discard-btn" id="aiDiscardBtn">Annuleren</button>
-      </div>
-    </div>
+  <div class="month-view" id="monthView">
+    <div class="month-weekday-row" id="monthWeekdayRow"></div>
+    <div class="month-grid" id="monthGrid"></div>
   </div>
 
-  <div class="backup-strip">
-    <span class="backup-label" title="Exporteer of importeer je agenda als JSON-bestand. Je API-sleutel zit nooit in deze export. Feestdagen worden altijd automatisch berekend.">💾 Back-up</span>
-    <div class="backup-actions">
-      <button id="exportBtn">⬇️ Exporteren</button>
-      <button id="importBtn">⬆️ Importeren</button>
-      <input type="file" id="importFile" accept="application/json" style="display:none;">
-    </div>
+  <div class="list-view" id="listView">
+    <div class="list-scroll" id="listScroll"></div>
   </div>
 
   <footer>
     <span id="saveStatus" class="save-status">Alles wordt automatisch lokaal opgeslagen.</span>
   </footer>
+  </div>
+  </div>
 </div>
 
 <!-- Afspraak toevoegen/bewerken -->
@@ -639,6 +981,7 @@
           <option value="7">Wekelijks</option>
           <option value="14">Om de week</option>
           <option value="28">Elke 4 weken</option>
+          <option value="yearly">Jaarlijks (bijv. verjaardag)</option>
         </select>
       </div>
       <div class="modal-field" id="modalRepeatUntilWrap" style="display:none;">
@@ -694,39 +1037,6 @@
   </div>
 </div>
 
-<!-- Synchronisatie -->
-<div class="modal-overlay" id="syncModalOverlay">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="syncModalTitle">
-    <button class="modal-close" id="syncModalClose">✕</button>
-    <h2 id="syncModalTitle">Synchronisatie tussen apparaten</h2>
-    <p class="modal-note">
-      Dit koppelt je agenda aan een gratis online opslagplek (jsonbin.io), zodat meerdere apparaten dezelfde agenda kunnen bijhouden.
-      Je hebt hiervoor een gratis account nodig op jsonbin.io — maak er een aan, ga naar "API Keys" in je dashboard en kopieer je Master Key hieronder.
-      De sleutel wordt alleen lokaal in je browser bewaard (los van je agenda-back-up) en rechtstreeks naar jsonbin.io verstuurd.
-      Bij gelijktijdige wijzigingen op twee apparaten wint simpelweg de laatst opgeslagen versie; er wordt niets samengevoegd.
-      Voor puur eigen gebruik tussen uw eigen apparaten is dit een prima, gratis oplossing. Voor een product dat u aan anderen zou verkopen is een echte backend met accounts nodig — dat is een wezenlijk andere, grotere stap.
-    </p>
-    <div class="ai-status-line" id="syncStatusLine">Synchronisatie is uitgeschakeld.</div>
-    <div class="modal-field">
-      <label>API-sleutel (Master Key van jsonbin.io)</label>
-      <input type="password" id="syncApiKeyInput" placeholder="$2a$10$…">
-    </div>
-    <div class="modal-field">
-      <label>Bin-ID</label>
-      <input type="text" id="syncIdInput" placeholder="Nog niet ingesteld">
-    </div>
-    <div class="modal-actions" style="flex-wrap:wrap;">
-      <button class="modal-btn-secondary" id="syncCreateBtn">Nieuwe sync aanmaken</button>
-      <button class="modal-btn-secondary" id="syncConnectBtn">Koppelen met dit ID</button>
-    </div>
-    <div class="modal-actions">
-      <button class="modal-btn-danger" id="syncDisableBtn">Loskoppelen</button>
-      <div style="flex:1;"></div>
-      <button class="modal-btn-secondary" id="syncNowBtn">Nu synchroniseren</button>
-      <button class="modal-btn-primary" id="syncModalCloseBtn2">Sluiten</button>
-    </div>
-  </div>
-</div>
 
 <!-- Zoeken -->
 <div class="modal-overlay" id="searchModalOverlay">
@@ -876,11 +1186,12 @@ function loadState(){
       const parsed = JSON.parse(raw);
       if(!Array.isArray(parsed.vacations)) parsed.vacations = [];
       if(!Array.isArray(parsed.events)) parsed.events = [];
+      if(!Array.isArray(parsed.tasks)) parsed.tasks = [];
       if(!parsed.weatherCache) parsed.weatherCache = {};
       return parsed;
     }
   }catch(e){}
-  return { events: [], location: null, weatherCache: {}, vacations: [] };
+  return { events: [], location: null, weatherCache: {}, vacations: [], tasks: [] };
 }
 function markContentModified(){ state.lastModified = Date.now(); }
 function saveState(){
@@ -935,6 +1246,27 @@ function generateDateSeries(startISO, untilISO, intervalDays){
   while(d <= until && guard < 200){
     dates.push(isoDate(d));
     d = addDays(d, intervalDays);
+    guard++;
+  }
+  return dates;
+}
+function generateYearlyDateSeries(startISO, untilISO){
+  const dates = [];
+  const start = parseISODate(startISO);
+  const until = parseISODate(untilISO);
+  const month = start.getMonth(), day = start.getDate();
+  let year = start.getFullYear();
+  let guard = 0;
+  while(guard < 150){
+    let d = new Date(year, month, day);
+    // 29 februari bestaat niet in een niet-schrikkeljaar; JS schuift die dan door
+    // naar 1 maart — corrigeer dat terug naar 28 februari.
+    if(month===1 && day===29 && d.getMonth()!==1){
+      d = new Date(year, 1, 28);
+    }
+    if(d > until) break;
+    dates.push(isoDate(d));
+    year++;
     guard++;
   }
   return dates;
@@ -1264,16 +1596,38 @@ function populateDaySelect(sel, days){
 
 function layoutDayEvents(dayEvents){
   dayEvents.sort((a,b)=> toMinutes(a.start) - toMinutes(b.start));
-  const columns = [];
+
+  // Groepeer eerst in clusters van elkaar overlappende afspraken (transitief) —
+  // een afspraak die met niks overlapt, mag nooit versmald worden alleen omdat
+  // ergens anders die dag wél een drukke cluster zit.
+  const clusters = [];
+  let currentCluster = [];
+  let clusterEnd = -Infinity;
   dayEvents.forEach(ev=>{
-    ev._col = -1;
-    for(let c=0;c<columns.length;c++){
-      if(columns[c] <= toMinutes(ev.start)){ ev._col = c; columns[c] = toMinutes(ev.end); break; }
+    const startMin = toMinutes(ev.start);
+    if(currentCluster.length > 0 && startMin >= clusterEnd){
+      clusters.push(currentCluster);
+      currentCluster = [];
+      clusterEnd = -Infinity;
     }
-    if(ev._col === -1){ ev._col = columns.length; columns.push(toMinutes(ev.end)); }
+    currentCluster.push(ev);
+    clusterEnd = Math.max(clusterEnd, toMinutes(ev.end));
   });
-  const totalCols = Math.max(columns.length,1);
-  dayEvents.forEach(ev=>{ ev._totalCols = totalCols; });
+  if(currentCluster.length > 0) clusters.push(currentCluster);
+
+  clusters.forEach(cluster=>{
+    const columns = [];
+    cluster.forEach(ev=>{
+      ev._col = -1;
+      for(let c=0;c<columns.length;c++){
+        if(columns[c] <= toMinutes(ev.start)){ ev._col = c; columns[c] = toMinutes(ev.end); break; }
+      }
+      if(ev._col === -1){ ev._col = columns.length; columns.push(toMinutes(ev.end)); }
+    });
+    const totalCols = Math.max(columns.length, 1);
+    cluster.forEach(ev=>{ ev._totalCols = totalCols; });
+  });
+
   return dayEvents;
 }
 
@@ -1558,18 +1912,188 @@ function renderMobileView(days){
 function isMobileView(){
   return window.matchMedia("(max-width: 700px)").matches;
 }
+function isMonthView(){
+  return uiPrefs.viewMode === "month";
+}
+
+/* ================= Maandoverzicht ================= */
+function renderMonthView(){
+  const year = current.getFullYear();
+  const month = current.getMonth();
+  const todayStr = isoDate(new Date());
+
+  const weekdayRow = document.getElementById("monthWeekdayRow");
+  if(!weekdayRow.childElementCount){
+    weekdayRow.innerHTML = WEEKDAY_SHORT.map(d=>`<div>${d}</div>`).join("");
+  }
+
+  const firstOfMonth = new Date(year, month, 1);
+  const lastOfMonth = new Date(year, month+1, 0);
+  const gridStart = getMonday(firstOfMonth);
+  const gridEnd = addDays(getMonday(lastOfMonth), 6);
+  const totalDays = Math.round((gridEnd - gridStart) / 86400000) + 1;
+  const weeksCount = totalDays / 7;
+
+  const grid = document.getElementById("monthGrid");
+  grid.style.gridTemplateRows = `repeat(${weeksCount}, minmax(72px, 1fr))`;
+
+  const maxDots = 4;
+  const frag = document.createDocumentFragment();
+  for(let i=0;i<totalDays;i++){
+    const dayDate = addDays(gridStart, i);
+    const iso = isoDate(dayDate);
+    const outside = dayDate.getMonth() !== month;
+    const isToday = iso === todayStr;
+    const cell = document.createElement("div");
+    cell.className = "month-cell" + (outside ? " outside" : "") + (isToday ? " today" : "");
+    cell.dataset.date = iso;
+
+    const num = document.createElement("div");
+    num.className = "month-cell-num";
+    num.textContent = dayDate.getDate();
+    cell.appendChild(num);
+
+    const holiday = getHoliday(iso);
+    if(holiday){
+      const hEl = document.createElement("div");
+      hEl.className = "month-cell-holiday";
+      hEl.textContent = holiday.name;
+      cell.appendChild(hEl);
+    }
+    const vac = state.vacations.find(v => iso >= v.start && iso <= v.end);
+    if(vac){
+      const vEl = document.createElement("div");
+      vEl.className = "month-cell-vacation";
+      vEl.textContent = "✈ " + vac.title;
+      cell.appendChild(vEl);
+    }
+    const dayEvents = state.events
+      .filter(e=>e.date===iso && !uiPrefs.hiddenCategories.includes(e.category))
+      .sort((a,b)=> toMinutes(a.start)-toMinutes(b.start));
+    if(dayEvents.length){
+      const dotsWrap = document.createElement("div");
+      dotsWrap.className = "month-cell-dots";
+      dayEvents.slice(0,maxDots).forEach(ev=>{
+        const cat = CATEGORIES.find(c=>c.key===ev.category) || CATEGORIES[CATEGORIES.length-1];
+        const dot = document.createElement("span");
+        dot.className = "month-dot";
+        dot.style.background = categoryColor(cat);
+        dot.title = `${ev.start} ${ev.title}`;
+        dotsWrap.appendChild(dot);
+      });
+      cell.appendChild(dotsWrap);
+      if(dayEvents.length > maxDots){
+        const more = document.createElement("div");
+        more.className = "month-cell-more";
+        more.textContent = `+${dayEvents.length - maxDots}`;
+        cell.appendChild(more);
+      }
+    }
+    frag.appendChild(cell);
+  }
+  grid.innerHTML = "";
+  grid.appendChild(frag);
+}
+document.getElementById("monthGrid").addEventListener("click",(e)=>{
+  const cell = e.target.closest(".month-cell");
+  if(!cell) return;
+  const [y,m,d] = cell.dataset.date.split("-").map(Number);
+  current = new Date(y, m-1, d);
+  setViewMode("week");
+});
+
+/* ================= Lijstweergave ("Schema") =================
+   Chronologisch overzicht van aankomende afspraken en vakanties, zoals de
+   "Planning"-weergave van Google Agenda — handig als je geen rooster wilt scrollen
+   maar gewoon wilt zien wat er allemaal aankomt. */
+function isListView(){
+  return uiPrefs.viewMode === "list";
+}
+const LIST_VIEW_DAYS = 60;
+function renderListView(){
+  const startDate = new Date(current);
+  startDate.setHours(0,0,0,0);
+  const todayStr = isoDate(new Date());
+  const items = [];
+  for(let i=0;i<LIST_VIEW_DAYS;i++){
+    const d = addDays(startDate, i);
+    const iso = isoDate(d);
+    const dayEvents = state.events
+      .filter(e=>e.date===iso && !uiPrefs.hiddenCategories.includes(e.category))
+      .sort((a,b)=> toMinutes(a.start)-toMinutes(b.start));
+    dayEvents.forEach(ev=> items.push({ date: iso, type:"event", ev }));
+    state.vacations.forEach(v=>{
+      if(v.start===iso) items.push({ date: iso, type:"vacation", vac: v });
+    });
+  }
+  const listEl = document.getElementById("listScroll");
+  if(items.length===0){
+    listEl.innerHTML = `<p class="list-empty">Geen afspraken in de komende ${LIST_VIEW_DAYS} dagen.</p>`;
+    return;
+  }
+  let html = "";
+  let lastDate = null;
+  items.forEach(it=>{
+    if(it.date !== lastDate){
+      lastDate = it.date;
+      const isToday = it.date === todayStr;
+      html += `<div class="list-date-heading${isToday ? " today" : ""}">${escapeHtml(formatReadableDate(it.date))}${isToday ? " · vandaag" : ""}</div>`;
+    }
+    if(it.type==="vacation"){
+      html += `<button type="button" class="list-item list-item-vacation" data-vacation-id="${it.vac.id}">
+        <span class="list-item-time">✈</span>
+        <span class="list-item-title">${escapeHtml(it.vac.title)}${it.vac.destination ? " — " + escapeHtml(it.vac.destination) : ""}</span>
+        <span class="list-item-meta">t/m ${escapeHtml(formatReadableDate(it.vac.end))}</span>
+      </button>`;
+    } else {
+      const cat = CATEGORIES.find(c=>c.key===it.ev.category) || CATEGORIES[CATEGORIES.length-1];
+      html += `<button type="button" class="list-item" data-id="${it.ev.id}">
+        <span class="list-item-dot" style="background:${categoryColor(cat)}"></span>
+        <span class="list-item-time">${it.ev.start}</span>
+        <span class="list-item-title">${escapeHtml(it.ev.title)}</span>
+        <span class="list-item-meta">${it.ev.withWho ? "met " + escapeHtml(it.ev.withWho) : ""}</span>
+      </button>`;
+    }
+  });
+  listEl.innerHTML = html;
+}
+document.getElementById("listScroll").addEventListener("click",(e)=>{
+  const vacBtn = e.target.closest(".list-item-vacation");
+  if(vacBtn){
+    const vac = state.vacations.find(v=>v.id===vacBtn.dataset.vacationId);
+    if(vac) openVacationModal(vac);
+    return;
+  }
+  const item = e.target.closest(".list-item");
+  if(!item) return;
+  const ev = state.events.find(x=>x.id===item.dataset.id);
+  if(ev) openEventModal({ id:ev.id, date:ev.date, start:ev.start, end:ev.end, title:ev.title, category:ev.category, withWho:ev.withWho||"", notes:ev.notes||"", recurrenceId:ev.recurrenceId||null });
+});
+
 function render(){
+  if(isListView()){
+    document.getElementById("weekLabel").textContent = `Vanaf ${formatReadableDate(isoDate(current))}`;
+    renderListView();
+    return;
+  }
+  if(isMonthView()){
+    document.getElementById("weekLabel").textContent = `${MONTH_LONG[current.getMonth()]} ${current.getFullYear()}`;
+    renderMonthView();
+    return;
+  }
   const monday = getMonday(current);
   const days = getCurrentWeekDays();
   document.getElementById("weekLabel").textContent = formatWeekLabel(monday);
   renderWeekSummary(days);
   if(isMobileView()){
     renderMobileView(days);
+    if(typeof updateMobileScrollHandle==="function") updateMobileScrollHandle();
   } else {
     renderGrid(days);
     updateWeatherUI(days);
     updateNowIndicator();
     playSlideAnimation(document.getElementById("weekGrid"));
+    if(typeof updateWeekScrollHandle==="function") updateWeekScrollHandle();
   }
 }
 let lastKnownMobileState = null;
@@ -1630,8 +2154,10 @@ document.getElementById("modalRepeat").addEventListener("change", ()=>{
   const untilInput = document.getElementById("modalRepeatUntil");
   if(val==="none"){ wrap.style.display = "none"; return; }
   wrap.style.display = "flex";
-  if(!untilInput.value){
-    const startDate = parseISODate(document.getElementById("modalDay").value);
+  const startDate = parseISODate(document.getElementById("modalDay").value);
+  if(val==="yearly"){
+    untilInput.value = isoDate(new Date(startDate.getFullYear()+10, startDate.getMonth(), startDate.getDate()));
+  } else {
     untilInput.value = isoDate(addDays(startDate, 13*7)); // standaard ~3 maanden vooruit
   }
 });
@@ -1664,7 +2190,9 @@ document.getElementById("modalSaveBtn").addEventListener("click", ()=>{
     const untilStr = document.getElementById("modalRepeatUntil").value;
     if(!untilStr){ alert("Kies een einddatum voor de herhaling."); return; }
     if(untilStr < date){ alert("De einddatum van de herhaling moet op of na de startdatum liggen."); return; }
-    const dates = generateDateSeries(date, untilStr, parseInt(repeatValue,10));
+    const dates = repeatValue==="yearly"
+      ? generateYearlyDateSeries(date, untilStr)
+      : generateDateSeries(date, untilStr, parseInt(repeatValue,10));
     if(dates.length === 0){ alert("Geen datums gevonden binnen deze periode."); return; }
     if(dates.length > 150){ alert("Dat zijn te veel afspraken in één keer (meer dan 150). Kies een kortere periode."); return; }
     if(editingEventId){
@@ -1823,18 +2351,30 @@ document.getElementById("searchResults").addEventListener("click",(e)=>{
 });
 
 document.addEventListener("keydown",(e)=>{
-  if(e.key==="Escape"){ closeEventModal(); closeSettingsModal(); closeSearchModal(); closeVacationModal(); closeSyncModal(); return; }
+  if(e.key==="Escape"){
+    closeEventModal(); closeSettingsModal(); closeSearchModal(); closeVacationModal();
+    if(appShellEl && !appShellEl.classList.contains("sidebar-collapsed") && isMobileViewport()) setSidebarCollapsed(true);
+    return;
+  }
 
   const tag = (e.target.tagName || "").toLowerCase();
   const isTyping = tag==="input" || tag==="textarea" || tag==="select" || e.target.isContentEditable;
   const modalOpen = document.querySelectorAll(".modal-overlay.open").length > 0;
   if(isTyping || modalOpen) return;
 
-  if(e.key==="ArrowLeft"){ goPrevWeek(); }
-  else if(e.key==="ArrowRight"){ goNextWeek(); }
+  if(e.key==="ArrowLeft"){ if(isMonthView()) goPrevMonth(); else if(!isListView()) goPrevWeek(); }
+  else if(e.key==="ArrowRight"){ if(isMonthView()) goNextMonth(); else if(!isListView()) goNextWeek(); }
   else if(e.key.toLowerCase()==="n" && !e.metaKey && !e.ctrlKey && !e.altKey){
     e.preventDefault();
     openEventModal({ date: isoDate(current), start:"09:00", end:"10:00" });
+  }
+  else if(e.key.toLowerCase()==="t" && !e.metaKey && !e.ctrlKey && !e.altKey){
+    e.preventDefault();
+    goToday();
+  }
+  else if(e.key==="/"){
+    e.preventDefault();
+    openSearchModal();
   }
 });
 
@@ -2030,22 +2570,14 @@ async function createNewSync(apiKey){
   return binId;
 }
 
-const syncModalOverlay = document.getElementById("syncModalOverlay");
-function openSyncModal(){
-  lastFocusedElement = document.activeElement;
+/* Synchronisatie zit nu als vaste sectie in de zijbalk (geen los venster meer) —
+   bij het laden vullen we de velden eenmalig; de knoppen hieronder houden ze verder bij. */
+function refreshSyncSidebarFields(){
   document.getElementById("syncApiKeyInput").value = syncSettings.apiKey || "";
   document.getElementById("syncIdInput").value = syncSettings.binId || "";
   setSyncStatus(syncReady() ? `Sync actief (bin: ${syncSettings.binId})` : "Synchronisatie is uitgeschakeld.", syncReady());
-  syncModalOverlay.classList.add("open");
 }
-function closeSyncModal(){
-  syncModalOverlay.classList.remove("open");
-  if(lastFocusedElement){ lastFocusedElement.focus(); lastFocusedElement = null; }
-}
-document.getElementById("syncBtn").addEventListener("click", openSyncModal);
-document.getElementById("syncModalClose").addEventListener("click", closeSyncModal);
-document.getElementById("syncModalCloseBtn2").addEventListener("click", closeSyncModal);
-syncModalOverlay.addEventListener("click",(e)=>{ if(e.target===syncModalOverlay) closeSyncModal(); });
+refreshSyncSidebarFields();
 
 document.getElementById("syncCreateBtn").addEventListener("click", async ()=>{
   const apiKey = document.getElementById("syncApiKeyInput").value.trim();
@@ -2463,6 +2995,74 @@ function parseOffline(text, today){
   return results;
 }
 
+/* ================= Snelle invoerbalk (bovenaan) =================
+   Hergebruikt dezelfde offline-parser als de AI-assistent, maar voegt direct toe
+   in plaats van eerst een voorstel te tonen — bedoeld voor het snel intikken van
+   één afspraak zonder de zijbalk te hoeven openen. */
+function handleQuickAdd(){
+  const input = document.getElementById("quickAddInput");
+  const text = input.value.trim();
+  if(!text) return;
+  const items = parseOffline(text, new Date());
+  if(items.length === 0){
+    // Kon er geen datum/tijd uit halen — open het gewone formulier met de tekst als titel,
+    // zodat er niets verloren gaat en de gebruiker het handmatig kan afmaken.
+    openEventModal({ date: isoDate(current), start:"09:00", end:"10:00", title: text });
+    input.value = "";
+    closeQuickAdd();
+    return;
+  }
+  items.forEach(it=>{
+    const { type, ...clean } = it;
+    if(type==="vacation") state.vacations.push(clean);
+    else state.events.push(clean);
+  });
+  markContentModified();
+  saveState();
+  const earliestDate = items.reduce((min,it)=>{
+    const d = it.type==="vacation" ? it.start : it.date;
+    return d < min ? d : min;
+  }, items[0].type==="vacation" ? items[0].start : items[0].date);
+  const [y,m,d] = earliestDate.split("-").map(Number);
+  current = new Date(y, m-1, d);
+  renderLegend();
+  render();
+  input.value = "";
+  input.placeholder = items.length===1 ? "Toegevoegd ✓ — typ de volgende…" : `${items.length} items toegevoegd ✓`;
+  clearTimeout(handleQuickAdd._t);
+  handleQuickAdd._t = setTimeout(()=>{
+    input.placeholder = 'Snel toevoegen — bijv. "Lunch met Sanne morgen 12:30"';
+  }, 2200);
+}
+document.getElementById("quickAddBar").addEventListener("submit",(e)=>{
+  e.preventDefault();
+  handleQuickAdd();
+});
+
+const quickAddWrapEl = document.getElementById("quickAddWrap");
+const quickAddToggleBtn = document.getElementById("quickAddToggleBtn");
+function openQuickAdd(){
+  quickAddWrapEl.classList.add("open");
+  quickAddToggleBtn.classList.add("active");
+  quickAddToggleBtn.setAttribute("aria-expanded","true");
+  document.getElementById("quickAddInput").focus();
+}
+function closeQuickAdd(){
+  quickAddWrapEl.classList.remove("open");
+  quickAddToggleBtn.classList.remove("active");
+  quickAddToggleBtn.setAttribute("aria-expanded","false");
+}
+quickAddToggleBtn.addEventListener("click",()=>{
+  if(quickAddWrapEl.classList.contains("open")) closeQuickAdd();
+  else openQuickAdd();
+});
+document.addEventListener("click",(e)=>{
+  if(quickAddWrapEl.classList.contains("open") && !quickAddWrapEl.contains(e.target)) closeQuickAdd();
+});
+document.getElementById("quickAddInput").addEventListener("keydown",(e)=>{
+  if(e.key==="Escape"){ closeQuickAdd(); quickAddToggleBtn.focus(); }
+});
+
 /* ================= AI (Google Gemini API) herkenning ================= */
 function buildSystemPrompt(today){
   const todayIso = isoDate(today);
@@ -2668,16 +3268,144 @@ document.getElementById("aiSubmitBtn").addEventListener("click", async ()=>{
   }
 });
 
-/* ================= Navigatie ================= */
+/* ================= Navigatie =================
+   De losse ‹ › doorklikknopjes zijn vervangen door vegen (swipe) — net als bij Google
+   Agenda: naar links/rechts vegen op het rooster wisselt van week of maand. Pijltjestoetsen
+   en de datumsprong via het weeklabel blijven als extra manier om te navigeren. */
 function goPrevWeek(){ current = addDays(current,-7); render(); }
 function goNextWeek(){ current = addDays(current,7); render(); }
+function goPrevMonth(){ current = new Date(current.getFullYear(), current.getMonth()-1, 1); render(); }
+function goNextMonth(){ current = new Date(current.getFullYear(), current.getMonth()+1, 1); render(); }
 function goToday(){ current = new Date(); render(); }
 
-document.getElementById("prevWeek").addEventListener("click", goPrevWeek);
-document.getElementById("nextWeek").addEventListener("click", goNextWeek);
-document.getElementById("prevWeekSide").addEventListener("click", goPrevWeek);
-document.getElementById("nextWeekSide").addEventListener("click", goNextWeek);
 document.getElementById("todayBtn").addEventListener("click", goToday);
+
+/* Week/maand-weergave wisselen */
+function setViewMode(mode){
+  uiPrefs.viewMode = mode;
+  saveUIPrefs();
+  document.body.classList.toggle("view-month", mode==="month");
+  document.body.classList.toggle("view-list", mode==="list");
+  document.body.classList.toggle("view-week", mode==="week");
+  document.getElementById("viewToggleWeek").classList.toggle("active", mode==="week");
+  document.getElementById("viewToggleWeek").setAttribute("aria-pressed", mode==="week");
+  document.getElementById("viewToggleMonth").classList.toggle("active", mode==="month");
+  document.getElementById("viewToggleMonth").setAttribute("aria-pressed", mode==="month");
+  document.getElementById("viewToggleList").classList.toggle("active", mode==="list");
+  document.getElementById("viewToggleList").setAttribute("aria-pressed", mode==="list");
+  render();
+}
+document.getElementById("viewToggleWeek").addEventListener("click", ()=> setViewMode("week"));
+document.getElementById("viewToggleMonth").addEventListener("click", ()=> setViewMode("month"));
+document.getElementById("viewToggleList").addEventListener("click", ()=> setViewMode("list"));
+
+/* Vegen om van week of maand te wisselen (vervangt de oude ‹ › knoppen) */
+function attachSwipeNav(el, onPrev, onNext, opts={}){
+  let swipeState = null;
+  el.addEventListener("pointerdown",(e)=>{
+    if(opts.ignoreTarget && e.target.closest(opts.ignoreTarget)) return;
+    swipeState = { startX: e.clientX, startY: e.clientY, startScrollLeft: el.scrollLeft||0, pointerId: e.pointerId };
+  });
+  el.addEventListener("pointerup",(e)=>{
+    if(!swipeState || swipeState.pointerId !== e.pointerId) return;
+    const dx = e.clientX - swipeState.startX;
+    const dy = e.clientY - swipeState.startY;
+    const scrollMoved = Math.abs((el.scrollLeft||0) - swipeState.startScrollLeft) > 4;
+    const pillDragging = opts.isBusy && opts.isBusy();
+    if(!scrollMoved && !pillDragging && Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5){
+      if(dx < 0) onNext(); else onPrev();
+    }
+    swipeState = null;
+  });
+  el.addEventListener("pointercancel", ()=>{ swipeState = null; });
+}
+attachSwipeNav(document.getElementById("tableScroll"), goPrevWeek, goNextWeek, {
+  ignoreTarget: ".event-pill",
+  isBusy: ()=> !!(dragState && dragState.dragging)
+});
+attachSwipeNav(document.getElementById("monthView"), goPrevMonth, goNextMonth);
+
+/* Twee-vinger-veeg op een trackpad (horizontaal scrollen) wisselt ook van week/maand/dag —
+   dat voelt vloeiender dan met de muis moeten klikken-en-slepen. */
+function attachTrackpadSwipeNav(el, onPrev, onNext, opts={}){
+  let accumX = 0;
+  let cooldown = false;
+  let resetTimer = null;
+  const canScrollHorizontally = ()=> el.scrollWidth > el.clientWidth + 1;
+  el.addEventListener("wheel",(e)=>{
+    if(opts.isBusy && opts.isBusy()) return;
+    if(e.ctrlKey) return; // pinch-zoom-gebaar, geen navigatie
+    if(Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return; // overwegend verticaal: gewoon laten scrollen
+    if(canScrollHorizontally()) return; // het rooster is hier zelf al horizontaal scrollbaar
+    e.preventDefault();
+    if(cooldown) return;
+    accumX += e.deltaX;
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(()=>{ accumX = 0; }, 180);
+    const THRESHOLD = 55;
+    if(Math.abs(accumX) > THRESHOLD){
+      if(accumX > 0) onNext(); else onPrev();
+      accumX = 0;
+      cooldown = true;
+      setTimeout(()=>{ cooldown = false; }, 420);
+    }
+  }, { passive:false });
+}
+attachTrackpadSwipeNav(document.getElementById("tableScroll"), goPrevWeek, goNextWeek, {
+  isBusy: ()=> !!(dragState && dragState.dragging)
+});
+attachTrackpadSwipeNav(document.getElementById("monthView"), goPrevMonth, goNextMonth);
+attachTrackpadSwipeNav(document.getElementById("mobileDayScroll"),
+  ()=>{ current = addDays(current,-1); render(); },
+  ()=>{ current = addDays(current,1); render(); },
+  { isBusy: ()=> !!(mobileDragState && mobileDragState.dragging) }
+);
+
+/* Verticale sleepbalk voor het rooster — een alternatief voor door de hele pagina scrollen,
+   zoals bij Google Agenda. Vegen/scrollen in het rooster zelf blijft ook gewoon werken. */
+function attachScrollHandle(scrollEl, trackEl){
+  const thumb = trackEl.querySelector(".scroll-thumb");
+  function update(){
+    if(!scrollEl.scrollHeight){ trackEl.classList.add("hidden"); return; }
+    const ratio = scrollEl.clientHeight / scrollEl.scrollHeight;
+    if(ratio >= 1){ trackEl.classList.add("hidden"); return; }
+    trackEl.classList.remove("hidden");
+    const trackH = trackEl.clientHeight;
+    const thumbH = Math.max(30, trackH * ratio);
+    const maxScroll = scrollEl.scrollHeight - scrollEl.clientHeight;
+    const top = maxScroll > 0 ? (scrollEl.scrollTop / maxScroll) * (trackH - thumbH) : 0;
+    thumb.style.height = thumbH + "px";
+    thumb.style.transform = `translateY(${top}px)`;
+  }
+  scrollEl.addEventListener("scroll", update);
+  window.addEventListener("resize", update);
+  let dragState2 = null;
+  thumb.addEventListener("pointerdown",(e)=>{
+    dragState2 = { startY: e.clientY, startScrollTop: scrollEl.scrollTop };
+    thumb.classList.add("dragging");
+    try{ thumb.setPointerCapture(e.pointerId); }catch(err){}
+    e.preventDefault();
+  });
+  thumb.addEventListener("pointermove",(e)=>{
+    if(!dragState2) return;
+    const trackH = trackEl.clientHeight;
+    const ratio = scrollEl.clientHeight / scrollEl.scrollHeight;
+    const thumbH = Math.max(30, trackH * ratio);
+    const maxScroll = scrollEl.scrollHeight - scrollEl.clientHeight;
+    const scrollableTrack = trackH - thumbH;
+    if(scrollableTrack > 0){
+      const deltaY = e.clientY - dragState2.startY;
+      scrollEl.scrollTop = dragState2.startScrollTop + deltaY * (maxScroll / scrollableTrack);
+    }
+  });
+  function endDrag2(){ dragState2 = null; thumb.classList.remove("dragging"); }
+  thumb.addEventListener("pointerup", endDrag2);
+  thumb.addEventListener("pointercancel", endDrag2);
+  update();
+  return update;
+}
+const updateWeekScrollHandle = attachScrollHandle(document.getElementById("tableScroll"), document.getElementById("weekScrollTrack"));
+const updateMobileScrollHandle = attachScrollHandle(document.getElementById("mobileDayScroll"), document.getElementById("mobileScrollTrack"));
 
 /* Klikbaar weeklabel: spring naar een zelfgekozen datum */
 document.getElementById("weekLabel").addEventListener("click", ()=>{
@@ -2744,13 +3472,316 @@ document.getElementById("importFile").addEventListener("change",(e)=>{
   e.target.value = "";
 });
 
+/* ================= .ics export/import (uitwisselen met Google/Outlook/Apple) ================= */
+function icsEscape(str){
+  return String(str||"").replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+}
+function icsUnescape(str){
+  return String(str||"").replace(/\\n/gi,"\n").replace(/\\,/g,",").replace(/\\;/g,";").replace(/\\\\/g,"\\");
+}
+function icsFoldLine(line){
+  // RFC5545: regels max. 75 octets; vervolgregels beginnen met een spatie.
+  if(line.length <= 75) return line;
+  let result = line.slice(0,75);
+  let rest = line.slice(75);
+  while(rest.length > 0){
+    result += "\r\n " + rest.slice(0,74);
+    rest = rest.slice(74);
+  }
+  return result;
+}
+function buildICS(){
+  const lines = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Weekagenda//NL","CALSCALE:GREGORIAN"];
+  const stamp = new Date().toISOString().replace(/[-:]/g,"").split(".")[0] + "Z";
+  state.events.forEach(ev=>{
+    const cat = CATEGORIES.find(c=>c.key===ev.category);
+    lines.push("BEGIN:VEVENT");
+    lines.push(icsFoldLine(`UID:${ev.id}@weekagenda`));
+    lines.push(`DTSTAMP:${stamp}`);
+    lines.push(`DTSTART:${ev.date.replace(/-/g,"")}T${ev.start.replace(":","")}00`);
+    lines.push(`DTEND:${ev.date.replace(/-/g,"")}T${ev.end.replace(":","")}00`);
+    lines.push(icsFoldLine(`SUMMARY:${icsEscape(ev.title)}`));
+    const descParts = [];
+    if(ev.withWho) descParts.push(`Met: ${ev.withWho}`);
+    if(ev.notes) descParts.push(ev.notes);
+    if(descParts.length) lines.push(icsFoldLine(`DESCRIPTION:${icsEscape(descParts.join(" — "))}`));
+    if(cat) lines.push(icsFoldLine(`CATEGORIES:${icsEscape(cat.label)}`));
+    lines.push("END:VEVENT");
+  });
+  state.vacations.forEach(vac=>{
+    const endExclusive = isoDate(addDays(parseISODate(vac.end),1)).replace(/-/g,"");
+    lines.push("BEGIN:VEVENT");
+    lines.push(icsFoldLine(`UID:${vac.id}@weekagenda`));
+    lines.push(`DTSTAMP:${stamp}`);
+    lines.push(`DTSTART;VALUE=DATE:${vac.start.replace(/-/g,"")}`);
+    lines.push(`DTEND;VALUE=DATE:${endExclusive}`);
+    const summary = (vac.title||"Vakantie") + (vac.destination ? ` — ${vac.destination}` : "");
+    lines.push(icsFoldLine(`SUMMARY:${icsEscape(summary)}`));
+    if(vac.notes) lines.push(icsFoldLine(`DESCRIPTION:${icsEscape(vac.notes)}`));
+    lines.push("END:VEVENT");
+  });
+  lines.push("END:VCALENDAR");
+  return lines.join("\r\n");
+}
+document.getElementById("exportIcsBtn").addEventListener("click", ()=>{
+  const blob = new Blob([buildICS()], { type:"text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const stamp = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = `weekagenda-${stamp}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+function parseICS(text){
+  // Ontvouw gevouwen regels: een vervolgregel begint met een spatie of tab.
+  const unfolded = text.replace(/\r\n/g,"\n").replace(/\n[ \t]/g,"");
+  const lines = unfolded.split("\n").map(l=>l.trim()).filter(Boolean);
+  const results = [];
+  let cur = null;
+  lines.forEach(line=>{
+    if(line === "BEGIN:VEVENT"){ cur = {}; return; }
+    if(line === "END:VEVENT"){ if(cur) results.push(cur); cur = null; return; }
+    if(!cur) return;
+    const idx = line.indexOf(":");
+    if(idx === -1) return;
+    let key = line.slice(0,idx);
+    const value = line.slice(idx+1);
+    const isDateOnly = /VALUE=DATE(?!-TIME)/i.test(key) || /^\d{8}$/.test(value);
+    key = key.split(";")[0].toUpperCase();
+    if(key==="SUMMARY") cur.summary = icsUnescape(value);
+    else if(key==="DESCRIPTION") cur.description = icsUnescape(value);
+    else if(key==="DTSTART"){ cur.dtstart = value; cur.dtstartAllDay = isDateOnly; }
+    else if(key==="DTEND"){ cur.dtend = value; cur.dtendAllDay = isDateOnly; }
+  });
+  return results;
+}
+function icsDateTimeToParts(value){
+  const m = value.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})/);
+  if(!m) return null;
+  return { date: `${m[1]}-${m[2]}-${m[3]}`, time: `${m[4]}:${m[5]}` };
+}
+function icsDateOnlyToIso(value){
+  const m = value.match(/^(\d{4})(\d{2})(\d{2})/);
+  if(!m) return null;
+  return `${m[1]}-${m[2]}-${m[3]}`;
+}
+function importICSItems(vevents){
+  let importedEvents = 0, importedVacations = 0, skipped = 0;
+  vevents.forEach(v=>{
+    if(!v.summary || !v.dtstart){ skipped++; return; }
+    if(v.dtstartAllDay){
+      const start = icsDateOnlyToIso(v.dtstart);
+      let end = v.dtend ? icsDateOnlyToIso(v.dtend) : start;
+      if(!start || !end){ skipped++; return; }
+      // ICS-einddatum bij hele-dag-items is exclusief; corrigeer terug naar de laatste echte dag.
+      if(end > start) end = isoDate(addDays(parseISODate(end), -1));
+      state.vacations.push({
+        id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        title: v.summary, start, end, destination:"", notes: v.description||""
+      });
+      importedVacations++;
+    } else {
+      const startParts = icsDateTimeToParts(v.dtstart);
+      const endParts = v.dtend ? icsDateTimeToParts(v.dtend) : null;
+      if(!startParts){ skipped++; return; }
+      const end = endParts ? endParts.time : minutesToTimeStr(Math.min(toMinutes(startParts.time)+60, END_HOUR*60));
+      state.events.push({
+        id: (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        date: startParts.date, title: v.summary, start: startParts.time, end,
+        category: "overig", withWho:"", notes: v.description||""
+      });
+      importedEvents++;
+    }
+  });
+  return { importedEvents, importedVacations, skipped };
+}
+document.getElementById("importIcsBtn").addEventListener("click", ()=>{ document.getElementById("importIcsFile").click(); });
+document.getElementById("importIcsFile").addEventListener("change",(e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt)=>{
+    try{
+      const vevents = parseICS(evt.target.result);
+      if(vevents.length===0){ alert("Geen afspraken gevonden in dit .ics-bestand."); return; }
+      const { importedEvents, importedVacations, skipped } = importICSItems(vevents);
+      markContentModified();
+      saveState();
+      renderLegend();
+      render();
+      alert(`${importedEvents} afspraken en ${importedVacations} vakanties geïmporteerd${skipped ? ` (${skipped} overgeslagen — geen titel of datum te bepalen)` : ""}.`);
+    }catch(err){
+      alert("Kon het .ics-bestand niet lezen. Controleer of het een geldig kalenderbestand is.");
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
+
+document.getElementById("printPdfBtn").addEventListener("click", ()=>{ window.print(); });
+
 window.addEventListener("visibilitychange", ()=>{ if(document.hidden) saveState(); });
 window.addEventListener("beforeunload", saveState);
+
+/* ================= Zijbalk (Back-up, Synchronisatie, AI-assistent) =================
+   Vervangt de losse kaarten onder het rooster — net als bij Google Agenda staat de
+   hoofdlayout vast en klapt dit menu in en uit via de knop linksboven. */
+const appShellEl = document.getElementById("appShell");
+function isMobileViewport(){ return window.matchMedia("(max-width: 700px)").matches; }
+function setSidebarCollapsed(collapsed){
+  appShellEl.classList.toggle("sidebar-collapsed", collapsed);
+  document.getElementById("sidebarToggleBtn").setAttribute("aria-expanded", String(!collapsed));
+  uiPrefs.sidebarCollapsed = collapsed;
+  saveUIPrefs();
+}
+function toggleSidebar(){ setSidebarCollapsed(!appShellEl.classList.contains("sidebar-collapsed")); }
+document.getElementById("sidebarToggleBtn").addEventListener("click", toggleSidebar);
+document.getElementById("mobileSidebarFab").addEventListener("click", toggleSidebar);
+document.getElementById("sidebarBackdrop").addEventListener("click", ()=> setSidebarCollapsed(true));
+
+function saveSidebarSectionState(){
+  uiPrefs.sidebarOpenSections = Array.from(document.querySelectorAll(".sidebar-section.open")).map(s=>s.id);
+  saveUIPrefs();
+}
+document.querySelectorAll(".sidebar-section-header").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const section = btn.closest(".sidebar-section");
+    const nowOpen = !section.classList.contains("open");
+    section.classList.toggle("open", nowOpen);
+    btn.setAttribute("aria-expanded", String(nowOpen));
+    saveSidebarSectionState();
+  });
+});
+/* Vouwt (indien nodig) de zijbalk open en klapt een specifieke sectie open — gebruikt
+   door knoppen elders in de app die naar een zijbalk-functie verwijzen. */
+function openSidebarSection(sectionId){
+  if(appShellEl.classList.contains("sidebar-collapsed")) setSidebarCollapsed(false);
+  const section = document.getElementById(sectionId);
+  if(section && !section.classList.contains("open")){
+    section.classList.add("open");
+    const header = section.querySelector(".sidebar-section-header");
+    if(header) header.setAttribute("aria-expanded","true");
+    saveSidebarSectionState();
+  }
+  if(section) section.scrollIntoView({ block:"nearest", behavior:"smooth" });
+}
+
+/* ================= Taken ================= */
+function formatTaskDue(iso){
+  const [y,m,d] = iso.split("-").map(Number);
+  const dt = new Date(y, m-1, d);
+  return dt.toLocaleDateString("nl-NL", { day:"numeric", month:"short" });
+}
+function isTaskOverdue(task){
+  if(!task.due || task.done) return false;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const [y,m,d] = task.due.split("-").map(Number);
+  return new Date(y, m-1, d) < today;
+}
+function renderTasks(){
+  const list = document.getElementById("taskList");
+  const empty = document.getElementById("taskListEmpty");
+  const badge = document.getElementById("taskCountBadge");
+  const tasks = Array.isArray(state.tasks) ? state.tasks : [];
+  const openCount = tasks.filter(t=>!t.done).length;
+  if(badge){
+    badge.textContent = String(openCount);
+    badge.style.display = openCount>0 ? "" : "none";
+  }
+  if(!tasks.length){
+    list.innerHTML = "";
+    empty.classList.add("visible");
+    return;
+  }
+  empty.classList.remove("visible");
+  const sorted = tasks.slice().sort((a,b)=>{
+    if(a.done !== b.done) return a.done ? 1 : -1;
+    if(!a.due && !b.due) return (a.createdAt||0) - (b.createdAt||0);
+    if(!a.due) return 1;
+    if(!b.due) return -1;
+    return a.due < b.due ? -1 : a.due > b.due ? 1 : 0;
+  });
+  list.innerHTML = sorted.map(t=>{
+    const overdue = isTaskOverdue(t);
+    return `<li class="task-item${t.done?" task-done":""}" data-task-id="${t.id}">
+      <input type="checkbox" class="task-item-checkbox" ${t.done?"checked":""} aria-label="Taak voltooid">
+      <div class="task-item-body">
+        <div class="task-item-title">${escapeHtml(t.title)}</div>
+        ${t.due ? `<div class="task-item-due${overdue?" task-overdue":""}">${overdue?"Verlopen · ":""}${formatTaskDue(t.due)}</div>` : ""}
+      </div>
+      <button type="button" class="task-item-delete" title="Taak verwijderen" aria-label="Taak verwijderen">✕</button>
+    </li>`;
+  }).join("");
+}
+document.getElementById("taskAddForm").addEventListener("submit",(e)=>{
+  e.preventDefault();
+  const input = document.getElementById("taskAddInput");
+  const dateInput = document.getElementById("taskAddDate");
+  const title = input.value.trim();
+  if(!title) return;
+  if(!Array.isArray(state.tasks)) state.tasks = [];
+  state.tasks.push({ id:"task_"+Date.now()+"_"+Math.random().toString(36).slice(2,8), title, due: dateInput.value || null, done:false, createdAt: Date.now() });
+  input.value = "";
+  dateInput.value = "";
+  markContentModified();
+  saveState();
+  renderTasks();
+  input.focus();
+});
+document.getElementById("taskList").addEventListener("click",(e)=>{
+  const item = e.target.closest(".task-item");
+  if(!item) return;
+  const id = item.dataset.taskId;
+  const task = (state.tasks||[]).find(t=>t.id===id);
+  if(!task) return;
+  if(e.target.closest(".task-item-delete")){
+    state.tasks = state.tasks.filter(t=>t.id!==id);
+    markContentModified();
+    saveState();
+    renderTasks();
+    return;
+  }
+  if(e.target.closest(".task-item-checkbox") || e.target.closest(".task-item-body")){
+    task.done = !task.done;
+    markContentModified();
+    saveState();
+    renderTasks();
+  }
+});
 
 /* ================= Init ================= */
 applyTheme();
 updateGreeting();
 renderLegend();
+renderTasks();
+(function initSidebar(){
+  const collapsed = typeof uiPrefs.sidebarCollapsed === "boolean" ? uiPrefs.sidebarCollapsed : isMobileViewport();
+  appShellEl.classList.toggle("sidebar-collapsed", collapsed);
+  document.getElementById("sidebarToggleBtn").setAttribute("aria-expanded", String(!collapsed));
+  const openSections = Array.isArray(uiPrefs.sidebarOpenSections) ? uiPrefs.sidebarOpenSections : ["sidebarSectionAi"];
+  document.querySelectorAll(".sidebar-section").forEach(sec=>{
+    const isOpen = openSections.includes(sec.id);
+    sec.classList.toggle("open", isOpen);
+    const header = sec.querySelector(".sidebar-section-header");
+    if(header) header.setAttribute("aria-expanded", String(isOpen));
+  });
+})();
+(function initViewMode(){
+  const mode = (uiPrefs.viewMode === "month" || uiPrefs.viewMode === "list") ? uiPrefs.viewMode : "week";
+  document.body.classList.toggle("view-month", mode==="month");
+  document.body.classList.toggle("view-list", mode==="list");
+  document.body.classList.toggle("view-week", mode==="week");
+  document.getElementById("viewToggleWeek").classList.toggle("active", mode==="week");
+  document.getElementById("viewToggleWeek").setAttribute("aria-pressed", mode==="week");
+  document.getElementById("viewToggleMonth").classList.toggle("active", mode==="month");
+  document.getElementById("viewToggleMonth").setAttribute("aria-pressed", mode==="month");
+  document.getElementById("viewToggleList").classList.toggle("active", mode==="list");
+  document.getElementById("viewToggleList").setAttribute("aria-pressed", mode==="list");
+})();
 lastKnownMobileState = isMobileView();
 render();
 initWeather();
